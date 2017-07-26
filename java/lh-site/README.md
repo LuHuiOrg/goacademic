@@ -1,9 +1,8 @@
-# fd-site
-This is for first Dimension Biosciences(SuZhou) Co.,Ltd
+# lh-site
 
 导入此项目时需要注意的：
 1.如果能正常解压node-package.7z那么请解压完成后导入此maven项目
-2.如果不能正常解压node-package.7z那么需要在fd-site\node_modules\node-sass\vendor\win32-x64-11\binding.node添加上
+2.如果不能正常解压node-package.7z那么需要在lh-site\node_modules\node-sass\vendor\win32-x64-11\binding.node添加上
 并修改gulp-rev-append:index.js和gulp-asset-rev:index.js
 
 打包命令：
