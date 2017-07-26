@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 主库数据源 -->
+	<bean id="writeDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="name">
+			<value>${write.jdbc.name}</value>
+		</property>
+		<property name="driverClassName">
+			<value>${write.jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${write.jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${write.jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${write.jdbc.password}</value>
+		</property>
+		<property name="filters">
+			<value>${write.jdbc.filters}</value>
+		</property>
+		<property name="initialSize">
+			<value>${write.jdbc.initialSize}</value>
+		</property>
+		<property name="maxActive">
+			<value>${write.jdbc.maxActive}</value>
+		</property>
+		<property name="minIdle">
+			<value>${write.jdbc.minIdle}</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>${write.jdbc.defaultAutoCommit}</value>
+		</property>
+		<property name="maxWait">
+			<value>${write.jdbc.maxWait}</value>
+		</property>
+		<property name="removeAbandoned">
+			<value>${write.jdbc.removeAbandoned}</value>
+		</property>
+		<property name="removeAbandonedTimeout">
+			<value>${write.jdbc.removeAbandonedTimeout}</value>
+		</property>
+		<property name="testOnBorrow">
+			<value>${write.jdbc.testOnBorrow}</value>
+		</property>
+		<property name="testOnReturn">
+			<value>${write.jdbc.testOnReturn}</value>
+		</property>
+		<property name="testWhileIdle">
+			<value>${write.jdbc.testWhileIdle}</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis">
+			<value>${write.jdbc.timeBetweenEvictionRunsMillis}</value>
+		</property>
+		<property name="minEvictableIdleTimeMillis">
+			<value>${write.jdbc.minEvictableIdleTimeMillis}</value>
+		</property>
+		<property name="numTestsPerEvictionRun">
+			<value>${write.jdbc.numTestsPerEvictionRun}</value>
+		</property>
+		<property name="validationQuery">
+			<value>${write.jdbc.validateQuery}</value>
+		</property>
+		<property name="poolPreparedStatements">
+			<value>${write.jdbc.poolPreparedStatements}</value>
+		</property>
+		<property name="maxOpenPreparedStatements">
+			<value>${write.jdbc.maxOpenPreparedStatements}</value>
+		</property>
+	</bean>
+
+	<!-- 从库数据源 -->
+	<bean id="readDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="name">
+			<value>${read.jdbc.name}</value>
+		</property>
+		<property name="driverClassName">
+			<value>${read.jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${read.jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${read.jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${read.jdbc.password}</value>
+		</property>
+		<property name="filters">
+			<value>${read.jdbc.filters}</value>
+		</property>
+		<property name="initialSize">
+			<value>${read.jdbc.initialSize}</value>
+		</property>
+		<property name="maxActive">
+			<value>${read.jdbc.maxActive}</value>
+		</property>
+		<property name="minIdle">
+			<value>${read.jdbc.minIdle}</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>${read.jdbc.defaultAutoCommit}</value>
+		</property>
+		<property name="maxWait">
+			<value>${read.jdbc.maxWait}</value>
+		</property>
+		<property name="removeAbandoned">
+			<value>${read.jdbc.removeAbandoned}</value>
+		</property>
+		<property name="removeAbandonedTimeout">
+			<value>${read.jdbc.removeAbandonedTimeout}</value>
+		</property>
+		<property name="testOnBorrow">
+			<value>${read.jdbc.testOnBorrow}</value>
+		</property>
+		<property name="testOnReturn">
+			<value>${read.jdbc.testOnReturn}</value>
+		</property>
+		<property name="testWhileIdle">
+			<value>${read.jdbc.testWhileIdle}</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis">
+			<value>${read.jdbc.timeBetweenEvictionRunsMillis}</value>
+		</property>
+		<property name="minEvictableIdleTimeMillis">
+			<value>${read.jdbc.minEvictableIdleTimeMillis}</value>
+		</property>
+		<property name="numTestsPerEvictionRun">
+			<value>${read.jdbc.numTestsPerEvictionRun}</value>
+		</property>
+		<property name="validationQuery">
+			<value>${read.jdbc.validateQuery}</value>
+		</property>
+		<property name="poolPreparedStatements">
+			<value>${read.jdbc.poolPreparedStatements}</value>
+		</property>
+		<property name="maxOpenPreparedStatements">
+			<value>${read.jdbc.maxOpenPreparedStatements}</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.lh.site.utils.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="write" value-ref="writeDataSource" />
+				<entry key="read" value-ref="readDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="writeDataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath*:com/lh/site/mapper/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.lh.site.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager"
+		proxy-target-class="true" />
+
+	<bean id="transactionAwareDataSourceProxy"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<!-- 激活自动代理功能 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- 配置数据库注解aop -->
+    <bean id="dataSourceProcessor" class="com.lh.site.utils.datasource.DynamicDataSourceProcessor"/>
+	<aop:config>
+		<aop:pointcut id="txPointcut"
+				expression="execution(* com.lh.site.service..*.*(..))" />
+		
+		<!-- 不使用xml配置事务，统一使用注解配置事务
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+		-->
+				
+		<aop:aspect id="processor" ref="dataSourceProcessor">
+			<aop:around pointcut-ref="txPointcut" method="around"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 不使用xml配置事务，统一使用注解配置事务
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="query*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+	-->
+
+</beans>
