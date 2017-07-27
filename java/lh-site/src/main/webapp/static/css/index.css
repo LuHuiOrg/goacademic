@@ -1,1 +1,5 @@
-.jumbotron{margin-top: 50px;}
+.jumbotron{margin-top: 50px;margin-bottom: 0px;}
+
+.course-nav-row {padding: 16px 0 5px; border-bottom: 1px solid #edf1f2; }
+.course-nav-row .label {float: left;line-height: 30px; color: #07111b; }
+.course-nav-row .nav { padding-left: 50px; }

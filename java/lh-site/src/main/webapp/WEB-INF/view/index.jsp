@@ -26,6 +26,59 @@
 	    </form>
 	  </div>
 	</div>
+	<div class="container">
+        <div class="course-nav-row">
+            <span class="hd label">方向：</span>
+            <ul class="nav nav-pills" role="tablist">
+			  <li role="presentation" class="active"><a href="#">全部</a></li>
+			  <li role="presentation"><a href="#">程序班</a></li>
+			  <li role="presentation"><a href="#">专业课</a></li>
+			</ul>
+        </div>
+        <div class="course-nav-row">
+            <span class="hd label">分类：</span>
+            <ul class="nav nav-pills" role="tablist">
+			  <li role="presentation" class="active"><a href="#">全部</a></li>
+			  <li role="presentation"><a href="#">R语言</a></li>
+			  <li role="presentation"><a href="#">JAVA</a></li>
+			  <li role="presentation"><a href="#">C++</a></li>
+			  <li role="presentation"><a href="#">电气</a></li>
+			  <li role="presentation"><a href="#">经济</a></li>
+			</ul>
+        </div>
+        <div class="course-nav-row">
+            <span class="hd label">年级：</span>
+            <ul class="nav nav-pills" role="tablist">
+			  <li role="presentation" class="active"><a href="#">全部</a></li>
+			  <li role="presentation"><a href="#">大一</a></li>
+			  <li role="presentation"><a href="#">大二</a></li>
+			  <li role="presentation"><a href="#">大三</a></li>
+			  <li role="presentation"><a href="#">大四</a></li>
+			</ul>
+        </div>
+	</div>
+	<div class="container">
+	  <div class="col-sm-6 col-md-4">
+	    <div class="thumbnail">
+	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <div class="caption">
+	        <h3>java课程</h3>
+	        <p>这是一个非常好的java课程</p>
+	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-sm-6 col-md-4">
+	    <div class="thumbnail">
+	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <div class="caption">
+	        <h3>java课程</h3>
+	        <p>这是一个非常好的java课程</p>
+	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<%@ include file="common/bottom.jsp" %>
 </body>
 </html>
