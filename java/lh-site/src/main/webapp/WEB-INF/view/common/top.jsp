@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="#">首页</a></li>
         <li><a href="#">登录</a></li>
-        <li><a href="#">注册</a></li>
+        <li><a href="${ctx }/passport/register">注册</a></li>
         <li><a href="#"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车</a></li>
         <li><a href="#">课程</a></li>
         <li><a href="#">质讯</a></li>

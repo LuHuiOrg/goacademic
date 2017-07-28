@@ -57,7 +57,17 @@
 			</ul>
         </div>
 	</div>
-	<div class="container">
+	<div class="container course-cont">
+	  <div class="col-sm-6 col-md-4">
+	    <div class="thumbnail">
+	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <div class="caption">
+	        <h3>java课程</h3>
+	        <p>这是一个非常好的java课程</p>
+	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	      </div>
+	    </div>
+	  </div>
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
 	      <img src="${ctx}/static/img/course.jpg" alt="课程">
@@ -79,6 +89,25 @@
 	    </div>
 	  </div>
 	</div>
+	<nav aria-label="Page navigation">
+	  <ul class="pagination">
+	    <li>
+	      <a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	    <li><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">5</a></li>
+	    <li>
+	      <a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+   	</nav>
 	<%@ include file="common/bottom.jsp" %>
 </body>
 </html>
