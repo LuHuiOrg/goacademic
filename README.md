@@ -18,9 +18,3 @@
 后台开发框架
 > * springmvc+mybatis+spring
 
-参考网址：
-http://yun.itheima.com/
-http://www.gogoup.com/
-http://www.imooc.com
-http://www.lefxtv.com/
-https://github.com/Lemonjing/TinyMooc
