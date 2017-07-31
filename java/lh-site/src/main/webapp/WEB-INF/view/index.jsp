@@ -10,6 +10,7 @@
 <meta name="renderer" content="webkit">
 <title>一个专门做视频教学的网站</title>
 <link rel="stylesheet" href="${ctx}/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="${ctx}/static/css/base.css">
 <link rel="stylesheet" href="${ctx}/static/css/index.css">
 </head>
 <body>

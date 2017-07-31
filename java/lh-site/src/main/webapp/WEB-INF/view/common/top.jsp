@@ -17,7 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">首页</a></li>
+        <li class="active"><a href="${ctx}/">首页</a></li>
         <li><a href="#">登录</a></li>
         <li><a href="${ctx }/passport/register">注册</a></li>
         <li><a href="#"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车</a></li>
@@ -36,5 +36,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
+<div class="box50px"></div>
  
  
