@@ -17,9 +17,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="${ctx}/">首页</a></li>
-        <li><a href="#">登录</a></li>
-        <li><a href="${ctx }/passport/register">注册</a></li>
+        <li <c:if test="${param.urlactive eq 'home' }">class="active"</c:if>><a href="${ctx}/?urlactive=home">首页</a></li>
+        <li <c:if test="${param.urlactive eq 'login' }">class="active"</c:if>><a href="${ctx }/passport/login?urlactive=login">登录</a></li>
+        <li <c:if test="${param.urlactive eq 'register' }">class="active"</c:if>><a href="${ctx }/passport/register?urlactive=register">注册</a></li>
         <li><a href="#"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车</a></li>
         <li><a href="#">课程</a></li>
         <li><a href="#">质讯</a></li>
@@ -31,7 +31,12 @@
             <li><a href="#">保存到桌面</a></li>
           </ul>
         </li>
-        <li><a href="#">关注微信号</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">关注微信号<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <img alt="公众号二维码" src="${ctx }/static/img/q-code.jpg" class="qcode"/>
+          </ul>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
