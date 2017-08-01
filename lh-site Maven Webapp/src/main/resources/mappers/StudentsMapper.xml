@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiyanlou.dao.AdminDao">
+
+    <resultMap type="Students" id="StudentsResult">
+        <id property="id" column="id" />
+        <result property="nickname" column="nickname" />
+        <result property="password" column="password" />
+        <result property="email" column="email" />
+         <result property="mobile" column="mobile" />
+        <association property="specialty" javaType="Specialty">
+			<id property="id" column="specialty_id" />
+			<result property="name" column="name" />
+		</association>
+		<association property="grade" javaType="Grade">
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+		</association>
+    </resultMap>
+
+    <select id="login" parameterType="Students" resultMap="StudentsResult">
+        select * from
+        t_student_info where (nickname=#{nickname} or nickname=#{nickname} or nickname=#{nickname}) and password=#{password} limit 1
+    </select>
+
+
+    <insert id="addStudents" useGeneratedKeys="true" keyProperty="id">
+        insert into t_student_info(nickname,password,mobile,email,specialty_id,grade_id)
+        values(#{nickname},#{password,#{mobile},#{email},#{specialty_id},#{grade_id}})
+    </insert>
+</mapper>
