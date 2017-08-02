@@ -5,7 +5,7 @@
   <artifactId>lh-site</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>lh-site Maven Webapp</name>
+  <name>lh-site</name>
   <url>http://maven.apache.org</url>
   
   <properties>
