@@ -16,7 +16,7 @@ public class StudentsTest extends BaseTest{
 	public void testAddStudents() {
 		StudentInfo studentInfo = new StudentInfo();
 		studentInfo.setNickname("renault");
-		studentInfo.setPassword("123");
+		studentInfo.setPassword("125553");
 		studentInfo.setEmail("2362651588@qq.com");
 		studentInfo.setMobile("13776060074");
 		System.out.println(studentsService.addStudents(studentInfo));
