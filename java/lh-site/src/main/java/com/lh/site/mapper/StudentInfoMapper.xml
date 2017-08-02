@@ -13,6 +13,12 @@
   <sql id="Base_Column_List" >
     id, nickname, password, mobile, email, specialty_id, grade_id
   </sql>
+  <select id="selectByNickNameAndPassword" resultMap="BaseResultMap" parameterType="com.lh.site.entity.StudentInfo">
+    select 
+    <include refid="Base_Column_List" />
+    from t_student_info
+    where nickname=#{nickname,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

@@ -12,7 +12,7 @@ public class StudentsTest extends BaseTest{
 	@Autowired
 	private StudentsService studentsService;
 	
-	@Test
+	/*@Test
 	public void testAddStudents() {
 		StudentInfo studentInfo = new StudentInfo();
 		studentInfo.setNickname("renault");
@@ -21,5 +21,14 @@ public class StudentsTest extends BaseTest{
 		studentInfo.setMobile("13776060074");
 		System.out.println(studentsService.addStudents(studentInfo));
 
+	}*/
+	
+	@Test
+	public void testLogin(){
+		StudentInfo studentInfo = new StudentInfo();
+		studentInfo.setNickname("renault");
+		studentInfo.setPassword("123");
+		System.out.println(studentsService.login(studentInfo).toString());
+		
 	}
 }

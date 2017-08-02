@@ -70,4 +70,13 @@ public class StudentInfo {
     public void setGradeId(Long gradeId) {
         this.gradeId = gradeId;
     }
+
+	@Override
+	public String toString() {
+		return "StudentInfo [id=" + id + ", nickname=" + nickname
+				+ ", password=" + password + ", mobile=" + mobile + ", email="
+				+ email + ", specialtyId=" + specialtyId + ", gradeId="
+				+ gradeId + "]";
+	}
+    
 }

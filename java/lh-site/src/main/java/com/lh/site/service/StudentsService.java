@@ -15,4 +15,9 @@ public class StudentsService {
 	public int addStudents(StudentInfo studentInfo){
 		return studentInfoMapper.insertSelective(studentInfo);
 	}
+	
+	public StudentInfo login(StudentInfo studentInfo){
+		return studentInfoMapper.selectByNickNameAndPassword(studentInfo);
+		
+	}
 }
