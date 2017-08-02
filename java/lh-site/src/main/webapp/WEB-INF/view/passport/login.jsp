@@ -31,11 +31,11 @@
 			        <form role="form">
 					  <div class="form-group">
 					    <label for="name">用户名</label>
-					    <input type="text" class="form-control" id="name" placeholder="请输入昵称/邮箱/手机号">
+					    <input type="text" class="form-control" id="username" placeholder="请输入昵称/邮箱/手机号">
 					  </div>
 					  <div class="form-group">
 					    <label for="name">密码</label>
-					    <input type="text" class="form-control" id="name" placeholder="请输入密码">
+					    <input type="password" class="form-control" id="password" placeholder="请输入密码">
 					  </div>
 					  <div class="checkbox">
 					    <label>

@@ -13,13 +13,29 @@
       </button>
       <a class="navbar-brand" href="#">学一手</a>
     </div>
+<script type="text/javascript">
 
+function logout() {
+	window.location.href = "${ctx }/passport/logout";
+}
+</script>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li <c:if test="${param.urlactive eq 'home' }">class="active"</c:if>><a href="${ctx}/?urlactive=home">首页</a></li>
+        <c:if test="${empty sessionScope.currentStudent}">
         <li <c:if test="${param.urlactive eq 'login' }">class="active"</c:if>><a href="${ctx }/passport/login?urlactive=login">登录</a></li>
         <li <c:if test="${param.urlactive eq 'register' }">class="active"</c:if>><a href="${ctx }/passport/register?urlactive=register">注册</a></li>
+        </c:if>
+        <c:if test="${not empty sessionScope.nickname}">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.nickname}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">个人资料</a></li>
+            <li> <a href="${ctx }/passport/logout" data-method="post">注销</a></li>
+          </ul>
+        </li>
+        </c:if>
         <li><a href="#"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车</a></li>
         <li><a href="#">课程</a></li>
         <li><a href="#">质讯</a></li>
