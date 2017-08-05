@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<form class="form-horizontal container" role="form" id="fm" action="${ctx }/passport/addStudent" method="post"> 
+	<form class="form-horizontal container" role="form" id="fm" action="${ctx }/passport/register" method="post"> 
 	  <div class="form-group">
 	    <label for="firstname" class="col-sm-2 control-label">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 	    <div class="col-sm-8">
@@ -131,6 +131,7 @@
 	}
 	if ('${errorMsg}' != '') {
 		alert('${errorMsg}');
+		$("#nickname").focus();
 	}
 	if ('${message}' != '') {
 		alert('${message}');

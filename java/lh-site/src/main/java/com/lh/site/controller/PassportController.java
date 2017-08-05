@@ -18,29 +18,44 @@ public class PassportController{
 	@Resource
 	private StudentsService studentsService;
 	
-	@RequestMapping(value = "register", method = RequestMethod.GET)
-	public String register(ModelMap model) {
+	//跳转到注册页面
+	@RequestMapping(value = "toregister", method = RequestMethod.GET)
+	public String toregister(ModelMap model) {
 		return "passport/register";
 	}
-	
-	@RequestMapping(value = "login",method = RequestMethod.GET)
-	public String login(ModelMap model){
+	//跳转到登录页面
+	@RequestMapping(value = "tologin",method = RequestMethod.GET)
+	public String tologin(ModelMap model){
 		return "passport/login";
 	}
-	
+	//注销
 	@RequestMapping(value = "logout",method = RequestMethod.GET)
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "index";
 	}
-	
-	@RequestMapping(value = "addStudent", method = RequestMethod.POST)
-	public String addStudent(StudentInfo studentInfo,HttpSession session){
+	//用户注册
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String register(StudentInfo studentInfo,HttpSession session){
 		 int resultTotal = 0;
 		 resultTotal = studentsService.addStudents(studentInfo);
 		 session.setAttribute("currentStudent", studentInfo);
 		 session.setAttribute("nickname", studentInfo.getNickname());
 		return "index";
+	}
+	//用户登录
+	@RequestMapping(value="login", method = RequestMethod.POST)
+	public String login(StudentInfo studentInfo,HttpSession session){
+		StudentInfo student = studentsService.login(studentInfo);
+		if(student != null){
+			session.setAttribute("currentStudent", student);
+			session.setAttribute("nickname", student.getNickname());
+		}else{
+			
+			session.setAttribute("errorMsg", "用户名或密码不正确！");
+			return "passport/login";
+		}
+		 return "index";
 	}
 	
 }

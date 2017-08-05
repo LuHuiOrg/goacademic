@@ -15,6 +15,7 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
+	<form class="form-horizontal container" role="form" id="fm" action="${ctx }/passport/login" method="post"> 
 	<div class="jumbotron">
 		<div class="container">
 			<div class="col-sm-5">
@@ -31,11 +32,11 @@
 			        <form role="form">
 					  <div class="form-group">
 					    <label for="name">用户名</label>
-					    <input type="text" class="form-control" id="username" placeholder="请输入昵称/邮箱/手机号">
+					    <input type="text" class="form-control" id="nickname" name="nickname" value="${studentInfo.nickname}" placeholder="请输入昵称/邮箱/手机号">
 					  </div>
 					  <div class="form-group">
 					    <label for="name">密码</label>
-					    <input type="password" class="form-control" id="password" placeholder="请输入密码">
+					    <input type="password" class="form-control" id="password" name="password"  value="${studentInfo.password}" placeholder="请输入密码">
 					  </div>
 					  <div class="checkbox">
 					    <label>
@@ -43,12 +44,38 @@
 					    </label>
 					    <a class="pull-right" href="javascript:void(0);">忘记密码</a>
 					  </div>
-					  <button type="submit" class="btn btn-default btn-lg btn-block">登陆</button>
+					  <button type="button" onclick="javascript:validate();" class="btn btn-default btn-lg btn-block">登录</button>
 					</form>
 			    </div>
 			</div>
 		</div>
 	</div>
+	</form>
 	<%@ include file="../common/bottom.jsp" %>
+	<script type="text/javascript" src="${ctx}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	function validate() {
+		var nickname = $("#nickname").val();
+		var password = $("#password").val();
+
+		if (nickname == null || nickname == "") {
+			alert("昵称不能为空");
+			return;
+		}
+		if (password == null || password == "") {
+			alert("密码不能为空");
+			return;
+		}
+		
+		$("#fm").submit();
+	
+	}
+	if ('${errorMsg}' != '') {
+		alert('${errorMsg}');
+	}
+	if ('${message}' != '') {
+		alert('${message}');
+	}
+	</script>
 </body>
 </html>

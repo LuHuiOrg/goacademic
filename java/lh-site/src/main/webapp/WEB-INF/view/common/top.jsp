@@ -24,8 +24,8 @@ function logout() {
       <ul class="nav navbar-nav navbar-right">
         <li <c:if test="${param.urlactive eq 'home' }">class="active"</c:if>><a href="${ctx}/?urlactive=home">首页</a></li>
         <c:if test="${empty sessionScope.currentStudent}">
-        <li <c:if test="${param.urlactive eq 'login' }">class="active"</c:if>><a href="${ctx }/passport/login?urlactive=login">登录</a></li>
-        <li <c:if test="${param.urlactive eq 'register' }">class="active"</c:if>><a href="${ctx }/passport/register?urlactive=register">注册</a></li>
+        <li <c:if test="${param.urlactive eq 'tologin' }">class="active"</c:if>><a href="${ctx }/passport/tologin?urlactive=tologin">登录</a></li>
+        <li <c:if test="${param.urlactive eq 'toregister' }">class="active"</c:if>><a href="${ctx }/passport/toregister?urlactive=toregister">注册</a></li>
         </c:if>
         <c:if test="${not empty sessionScope.nickname}">
         <li class="dropdown">
