@@ -1,8 +1,6 @@
 package com.lh.site.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -30,7 +28,7 @@ public class PassportController{
 		return "passport/login";
 	}
 	
-	@RequestMapping(value = "logout",method = RequestMethod.POST)
+	@RequestMapping(value = "logout",method = RequestMethod.GET)
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "index";

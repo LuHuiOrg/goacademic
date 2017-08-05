@@ -105,7 +105,7 @@
 	</appender>
 	
 	<root>
-		<level value="debug" />
+		<level value="INFO" />
 		
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILEDEBUG" />

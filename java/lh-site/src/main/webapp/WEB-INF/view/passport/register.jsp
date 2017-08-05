@@ -12,53 +12,6 @@
 <link rel="stylesheet" href="${ctx}/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="${ctx}/static/css/base.css">
 <link rel="stylesheet" href="${ctx}/static/css/passport/register.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript">
-function register() {
-	var nickname = $("#nickname").val();
-	var password = $("#password").val();
-	var checkpassword = $("#checkpassword").val();
-	var mobile = $("#mobile").val();
-	var email = $("#email").val();
-	var verify = $("#verify").val();
-	if (nickname == null || nickname == "") {
-		alert("昵称不能为空");
-		return;
-	}
-	if (password == null || password == "") {
-		alert("密码不能为空");
-		return;
-	}
-	if (checkpassword == null || checkpassword == "") {
-		alert("确认密码不能为空");
-		return;
-	}
-	if (checkpassword!=password) {
-		alert("两次密码不同，请重新输入");
-		return;
-	}
-	if (mobile == null || mobile == "") {
-		alert("电话不能为空");
-		return;
-	}
-	if (verify == null || verify == "") {
-		alert("验证码不能为空");
-		return;
-	}
-	if (email == null || email == "") {
-		alert("邮箱不能为空");
-		return;
-	}
-	$("#fm").submit();
-
-}
-if ('${errorMsg}' != '') {
-	alert('${errorMsg}');
-}
-if ('${message}' != '') {
-	alert('${message}');
-}
-</script>
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
@@ -66,47 +19,47 @@ if ('${message}' != '') {
 	  <div class="form-group">
 	    <label for="firstname" class="col-sm-2 control-label">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 	    <div class="col-sm-8">
-	      <input type="text" class="form-control" id="nickname" name="nickname"  value="${studentInfo.nickname}" placeholder="请输入昵称">
+	        <input type="text" class="form-control" id="nickname" name="nickname"  value="${studentInfo.nickname}" placeholder="请输入昵称">
+			<span class="help-block" style="color:red;" id="">* 必填项</span>
 	    </div>
-	    <span class="help-block" style="color:red;" id="">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 	    <div class="col-sm-8">
-	      <input type="password" class="form-control" id="password" name="password" value="${studentInfo.password}" placeholder="请输入密码">
+	        <input type="password" class="form-control" id="password" name="password" value="${studentInfo.password}" placeholder="请输入密码">
+		    <span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
-	    <span class="help-block" style="color:red;">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-2 control-label">确认密码</label>
 	    <div class="col-sm-8">
-	      <input type="password" class="form-control" id="checkpassword" name="checkpassword" placeholder="请再次输入密码">
+	        <input type="password" class="form-control" id="checkpassword" name="checkpassword" placeholder="请再次输入密码">
+		    <span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
-	    <span class="help-block" style="color:red;">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-2 control-label">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
 	    <div class="col-sm-8">
-	      <input type="text" class="form-control" id="mobile" name="mobile" value="${studentInfo.mobile}" placeholder="请输入手机号">
+	        <input type="text" class="form-control" id="mobile" name="mobile" value="${studentInfo.mobile}" placeholder="请输入手机号">
+		    <span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
-	    <span class="help-block" style="color:red;">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	    <label for="verify" class="col-sm-2 control-label">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label>
 	    <div class="col-sm-6">
 	      <input type="text" class="form-control" id="verify" name="verify" placeholder="请输入验证码">
+	      <span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
 	    <div class="col-sm-2">
-	      <button type="button" class="btn btn-primary btn-block">发送验证码</button>
+	        <button type="button" class="btn btn-primary btn-block">发送验证码</button>
 	    </div>
-	    <span class="help-block" style="color:red;">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	    <label for="email" class="col-sm-2 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 	    <div class="col-sm-8">
-	      <input type="text" class="form-control" id="email" name="email" value="${studentInfo.email}" placeholder="请输入邮箱">
+	        <input type="text" class="form-control" id="email" name="email" value="${studentInfo.email}" placeholder="请输入邮箱">
+	    	<span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
-	    <span class="help-block" style="color:red;">* 必填项</span>
 	  </div>
 	  <div class="form-group">
 	  	<label for="lastname" class="col-sm-2 control-label"></label>
@@ -136,5 +89,52 @@ if ('${message}' != '') {
 	  </div>
 	</form>
 	<%@ include file="../common/bottom.jsp" %>
+	<script type="text/javascript" src="${ctx}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	function register() {
+		var nickname = $("#nickname").val();
+		var password = $("#password").val();
+		var checkpassword = $("#checkpassword").val();
+		var mobile = $("#mobile").val();
+		var email = $("#email").val();
+		var verify = $("#verify").val();
+		if (nickname == null || nickname == "") {
+			alert("昵称不能为空");
+			return;
+		}
+		if (password == null || password == "") {
+			alert("密码不能为空");
+			return;
+		}
+		if (checkpassword == null || checkpassword == "") {
+			alert("确认密码不能为空");
+			return;
+		}
+		if (checkpassword!=password) {
+			alert("两次密码不同，请重新输入");
+			return;
+		}
+		if (mobile == null || mobile == "") {
+			alert("电话不能为空");
+			return;
+		}
+		if (verify == null || verify == "") {
+			alert("验证码不能为空");
+			return;
+		}
+		if (email == null || email == "") {
+			alert("邮箱不能为空");
+			return;
+		}
+		$("#fm").submit();
+	
+	}
+	if ('${errorMsg}' != '') {
+		alert('${errorMsg}');
+	}
+	if ('${message}' != '') {
+		alert('${message}');
+	}
+	</script>
 </body>
 </html>
