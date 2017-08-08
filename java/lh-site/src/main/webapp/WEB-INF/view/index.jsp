@@ -65,7 +65,7 @@
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>
-	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
 	      </div>
 	    </div>
 	  </div>
@@ -75,7 +75,7 @@
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>
-	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
 	      </div>
 	    </div>
 	  </div>
@@ -85,7 +85,7 @@
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>
-	        <p><a href="#" class="btn btn-primary" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
 	      </div>
 	    </div>
 	  </div>
@@ -110,5 +110,12 @@
 	  </ul>
    	</nav>
 	<%@ include file="common/bottom.jsp" %>
+	<script type="text/javascript">
+		$(function(){
+			$(".buy").click(function(){
+				layer.alert('已成功加入购物车，请到购物车结算', {icon: 6});
+			});
+		});
+	</script>
 </body>
 </html>

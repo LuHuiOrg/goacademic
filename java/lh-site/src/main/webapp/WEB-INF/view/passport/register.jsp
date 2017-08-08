@@ -89,7 +89,6 @@
 	  </div>
 	</form>
 	<%@ include file="../common/bottom.jsp" %>
-	<script type="text/javascript" src="${ctx}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	function register() {
 		var nickname = $("#nickname").val();
@@ -99,31 +98,31 @@
 		var email = $("#email").val();
 		var verify = $("#verify").val();
 		if (nickname == null || nickname == "") {
-			alert("昵称不能为空");
+			layer.alert('昵称不能为空', {icon: 6});
 			return;
 		}
 		if (password == null || password == "") {
-			alert("密码不能为空");
+			layer.alert('密码不能为空', {icon: 6});
 			return;
 		}
 		if (checkpassword == null || checkpassword == "") {
-			alert("确认密码不能为空");
+			layer.alert('确认密码不能为空', {icon: 6});
 			return;
 		}
 		if (checkpassword!=password) {
-			alert("两次密码不同，请重新输入");
+			layer.alert('两次密码不同，请重新输入', {icon: 6});
 			return;
 		}
 		if (mobile == null || mobile == "") {
-			alert("电话不能为空");
+			layer.alert('电话不能为空', {icon: 6});
 			return;
 		}
 		if (verify == null || verify == "") {
-			alert("验证码不能为空");
+			layer.alert('验证码不能为空', {icon: 6});
 			return;
 		}
 		if (email == null || email == "") {
-			alert("邮箱不能为空");
+			layer.alert('邮箱不能为空', {icon: 6});
 			return;
 		}
 		$("#fm").submit();

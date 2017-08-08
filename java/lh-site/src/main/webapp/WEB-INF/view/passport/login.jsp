@@ -15,7 +15,6 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<form class="form-horizontal container" role="form" id="fm" action="${ctx }/passport/login" method="post"> 
 	<div class="jumbotron">
 		<div class="container">
 			<div class="col-sm-5">
@@ -29,7 +28,7 @@
 			        <h3 class="panel-title">登陆</h3>
 			    </div>
 			    <div class="panel-body">
-			        <form role="form">
+			        <form role="form" id="fm" action="${ctx }/passport/login" method="post">
 					  <div class="form-group">
 					    <label for="name">用户名</label>
 					    <input type="text" class="form-control" id="nickname" name="nickname" value="${studentInfo.nickname}" placeholder="请输入昵称/邮箱/手机号">
@@ -39,9 +38,7 @@
 					    <input type="password" class="form-control" id="password" name="password"  value="${studentInfo.password}" placeholder="请输入密码">
 					  </div>
 					  <div class="checkbox">
-					    <label>
-					      <input type="checkbox">记住密码
-					    </label>
+					    <label><input type="checkbox">记住密码</label>
 					    <a class="pull-right" href="javascript:void(0);">忘记密码</a>
 					  </div>
 					  <button type="button" onclick="javascript:validate();" class="btn btn-default btn-lg btn-block">登录</button>
@@ -50,7 +47,6 @@
 			</div>
 		</div>
 	</div>
-	</form>
 	<%@ include file="../common/bottom.jsp" %>
 	<script type="text/javascript" src="${ctx}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript">
