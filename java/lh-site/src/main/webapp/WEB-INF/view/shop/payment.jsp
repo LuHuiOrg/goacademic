@@ -14,7 +14,35 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<a href="#">立即支付</a>
+	<div class="jumbotron">
+	  <div class="container">
+	  	<h1>支付中心</h1>
+	  </div>
+	</div>
+	<div class="container order">			
+		<table class="table">
+			<thead><tr> <th>订单：GDH236342874832</th> <th></th> <th></th>   </tr> </thead>
+			<tbody>
+				<tr>
+					<td><img src="/lh-site/static/img/product_01.jpg" width="75"></td>
+					<td><p>学习最牛逼的课程</p></td>
+					<td>￥120</td>
+				</tr>
+				<tr>
+					<td><img src="/lh-site/static/img/product_01.jpg" width="75"></td>
+					<td><p>学习最牛逼的课程</p></td>
+					<td>￥120</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="col-md-12"><h3 class="col-md-2">支付方式:</h3><img width="100" src="${ctx}/static/img/pay-ali.png" class="col-md-3"><img width="100" src="${ctx}/static/img/pay-wechat.png" class="col-md-3"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="col-md-12 text-right">
+			应付金额: <span class="cost_price">￥499.00</span><br>
+			<a class="btn btn-primary btn-large btn-submit" href="javascript:void(0);">立即支付<i class="glyphicon glyphicon-chevron-right"></i></a>
+		</div>
+	</div>
 	<%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

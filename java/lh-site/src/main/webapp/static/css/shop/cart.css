@@ -2,3 +2,6 @@
 .cart .table{}
 .cart .table tr{}
 .cart .table tr td{vertical-align: middle;}
+
+.order{margin-bottom: 45px;}
+.order .table tr td{vertical-align: middle;}
