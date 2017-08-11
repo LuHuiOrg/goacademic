@@ -61,7 +61,7 @@
 	<div class="container course-cont">
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
-	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>
@@ -71,7 +71,7 @@
 	  </div>
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
-	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>
@@ -81,7 +81,7 @@
 	  </div>
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
-	      <img src="${ctx}/static/img/course.jpg" alt="课程">
+	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
 	      <div class="caption">
 	        <h3>java课程</h3>
 	        <p>这是一个非常好的java课程</p>

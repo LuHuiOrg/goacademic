@@ -32,7 +32,6 @@
         </li>
         </c:if>
         <li <c:if test="${param.urlactive eq 'tocart' }">class="active"</c:if>><a href="${ctx }/shop/cart?urlactive=tocart"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车</a></li>
-        <li><a href="#">课程</a></li>
         <li><a href="#">质讯</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">记住网站<span class="caret"></span></a>
