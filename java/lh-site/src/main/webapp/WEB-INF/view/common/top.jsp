@@ -27,6 +27,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.nickname}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">个人资料</a></li>
+            <li><a href="${ctx}/office/myCourse">我的课程</a></li>
             <li> <a href="${ctx }/passport/logout" data-method="post">注销</a></li>
           </ul>
         </li>

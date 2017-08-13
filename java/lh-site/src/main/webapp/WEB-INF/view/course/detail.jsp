@@ -51,8 +51,58 @@
 	      <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
 	    </div>
 	    <div class="tab-pane fade" id="chapter">
-	      <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
-	        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+	      <!-- chapter start -->
+	      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          第一章 的撒回复
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			        <ul class="list-group">
+			          <li class="list-group-item">第一节 的说法哈待会发<i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i></li>
+			          <li class="list-group-item">第二节 的说法哈待会发</li>
+			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			        </ul>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingTwo">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          第二章 的撒回复
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			        <ul class="list-group">
+			          <li class="list-group-item">第一节 的说法哈待会发</li>
+			          <li class="list-group-item">第二节 的说法哈待会发</li>
+			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			        </ul>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingThree">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          第三章 的撒回复
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			        <ul class="list-group">
+			          <li class="list-group-item">第一节 的说法哈待会发</li>
+			          <li class="list-group-item">第二节 的说法哈待会发</li>
+			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			        </ul>
+			    </div>
+			  </div>
+			</div>
+	      <!-- chapter end -->
 	    </div>
 	    <div class="tab-pane fade" id="consult">
 	      <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
