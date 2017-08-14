@@ -63,9 +63,9 @@
 			    </div>
 			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 			        <ul class="list-group">
-			          <li class="list-group-item">第一节 的说法哈待会发<i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i></li>
-			          <li class="list-group-item">第二节 的说法哈待会发</li>
-			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
 			        </ul>
 			    </div>
 			  </div>
@@ -79,9 +79,9 @@
 			    </div>
 			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 			        <ul class="list-group">
-			          <li class="list-group-item">第一节 的说法哈待会发</li>
-			          <li class="list-group-item">第二节 的说法哈待会发</li>
-			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
 			        </ul>
 			    </div>
 			  </div>
@@ -95,9 +95,9 @@
 			    </div>
 			    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 			        <ul class="list-group">
-			          <li class="list-group-item">第一节 的说法哈待会发</li>
-			          <li class="list-group-item">第二节 的说法哈待会发</li>
-			          <li class="list-group-item">第三节 的说法哈待会发</li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
+			          <li class="list-group-item"><a href="${ctx}/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
 			        </ul>
 			    </div>
 			  </div>
