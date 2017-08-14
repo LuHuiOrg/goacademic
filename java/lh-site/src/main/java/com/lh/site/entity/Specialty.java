@@ -3,7 +3,7 @@ package com.lh.site.entity;
 public class Specialty {
     private Long id;
 
-    private String specialtyName;
+    private String name;
 
     public Long getId() {
         return id;
@@ -13,11 +13,11 @@ public class Specialty {
         this.id = id;
     }
 
-    public String getSpecialtyName() {
-        return specialtyName;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setSpecialtyName(String specialtyName) {
-        this.specialtyName = specialtyName == null ? null : specialtyName.trim();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

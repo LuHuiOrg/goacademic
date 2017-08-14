@@ -3,7 +3,7 @@ package com.lh.site.entity;
 public class Grade {
     private Long id;
 
-    private String gradeName;
+    private String name;
 
     public Long getId() {
         return id;
@@ -13,11 +13,12 @@ public class Grade {
         this.id = id;
     }
 
-    public String getGradeName() {
-        return gradeName;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setGradeName(String gradeName) {
-        this.gradeName = gradeName == null ? null : gradeName.trim();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

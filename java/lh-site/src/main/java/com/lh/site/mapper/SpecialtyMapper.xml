@@ -3,10 +3,10 @@
 <mapper namespace="com.lh.site.dao.SpecialtyMapper" >
   <resultMap id="BaseResultMap" type="com.lh.site.entity.Specialty" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, specialty_name
+    id, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -19,8 +19,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lh.site.entity.Specialty" >
-    insert into t_specialty (id, specialty_name)
-    values (#{id,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR})
+    insert into t_specialty (id, name)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lh.site.entity.Specialty" >
     insert into t_specialty
@@ -28,31 +28,31 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="specialtyName != null" >
-        specialty_name,
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="specialtyName != null" >
-        #{specialtyName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lh.site.entity.Specialty" >
     update t_specialty
     <set >
-      <if test="specialtyName != null" >
-        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lh.site.entity.Specialty" >
     update t_specialty
-    set specialty_name = #{specialtyName,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

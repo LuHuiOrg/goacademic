@@ -3,10 +3,10 @@
 <mapper namespace="com.lh.site.dao.GradeMapper" >
   <resultMap id="BaseResultMap" type="com.lh.site.entity.Grade" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, grade_name
+    id, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -19,8 +19,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lh.site.entity.Grade" >
-    insert into t_grade (id, grade_name)
-    values (#{id,jdbcType=BIGINT}, #{gradeName,jdbcType=VARCHAR})
+    insert into t_grade (id, name)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lh.site.entity.Grade" >
     insert into t_grade
@@ -28,31 +28,31 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="gradeName != null" >
-        grade_name,
+      <if test="name != null" >
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="gradeName != null" >
-        #{gradeName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lh.site.entity.Grade" >
     update t_grade
     <set >
-      <if test="gradeName != null" >
-        grade_name = #{gradeName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lh.site.entity.Grade" >
     update t_grade
-    set grade_name = #{gradeName,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
