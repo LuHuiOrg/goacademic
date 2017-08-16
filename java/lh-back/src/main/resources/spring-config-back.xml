@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:write-jdbc.properties</value>
+				<value>classpath*:read-jdbc.properties</value>
+			</list>
+		</property>	
+	</bean>
+	
+	<!-- 导入spring相关配置文件 -->
+	<import resource="spring-base-core.xml"/>
+	<import resource="spring-datasource-core.xml"/>
+	<import resource="spring-shiro.xml"/>
+	
+</beans>
