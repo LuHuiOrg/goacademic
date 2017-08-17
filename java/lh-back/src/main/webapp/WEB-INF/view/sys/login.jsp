@@ -29,8 +29,7 @@ A:active { text-decoration: none }
                 <tr style="height: 254px">
                     <td>
                         <div style="margin: 0px auto; width: 868px">
-                            <img style="display: block"
-                                src="${ctx}/static/img/body_03.jpg">
+                            <h2>学一手后台管理系统</h2>
                         </div>
                         <div style="background-color: #278296">
                             <div style="margin: 0px auto; width: 936px">
@@ -53,17 +52,11 @@ A:active { text-decoration: none }
                                         <table border=0 cellSpacing=0 cellPadding=0 width=300>
                                             <tbody>
                                                 <tr>
-                                                    <td width=100 align=right><input
-                                                        style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px"
-                                                        id=btnLogin
-                                                        src="${ctx}/static/img/btn1.jpg"
-                                                        type=image name=btnLogin onclick="javascript:login();"></td>
+                                                    <td width=100 align=right><input style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px"
+                                                        id=btnLogin src="${ctx}/static/img/btn1.jpg" type=image name=btnLogin onclick="javascript:login();"></td>
                                                     <td width=100 align=middle><input
                                                         style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px"
-                                                        id=btnReset
-                                                        src="${ctx}/static/img/btn2.jpg"
-                                                        type=image name=btnReset
-                                                        onclick="javascript:adminlogin.reset();"></td>
+                                                        id=btnReset src="${ctx}/static/img/btn2.jpg" type=image name=btnReset onclick="javascript:adminlogin.reset();"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

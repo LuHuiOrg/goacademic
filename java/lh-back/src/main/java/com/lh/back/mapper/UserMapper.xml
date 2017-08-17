@@ -3,36 +3,17 @@
 <mapper namespace="com.lh.back.dao.UserDao">
   <resultMap id="BaseResultMap" type="com.lh.back.entity.User">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="staff_no" jdbcType="VARCHAR" property="staffNo" />
-    <result column="office_id" jdbcType="BIGINT" property="officeId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="CHAR" property="password" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, staff_no, office_id, name, username, password
+    id, name, username, password
   </sql>
-  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectByUsername" resultMap="BaseResultMap">
   	select <include refid="Base_Column_List" />
-  	from sys_user u
-  	where u.username = #{username,jdbcType=VARCHAR}
-  </select>
-  <select id="getRoles" parameterType="java.lang.String" resultType="java.lang.String">
-	select
-	r.english_name
-	from sys_user u
-	left sys_user_role ur on u.id = ur.user_id
-	left sys_role
-	r on ur.role_id = r.id
-	where u.username=#{username,jdbcType=VARCHAR}
-  </select>
-  <select id="getPermissions" parameterType="java.lang.String" resultType="java.lang.String">
-	select
-	r.permission_identity
-	from sys_user u
-	left sys_user_resource ur on u.id = ur.user_id
-	left sys_resource r on ur.resource_id = r.id
-	where u.username=#{username,jdbcType=VARCHAR}
+  	from sys_user 
+  	where username = #{username,jdbcType=VARCHAR}
   </select>
   
 </mapper>

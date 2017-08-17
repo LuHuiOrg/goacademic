@@ -1,24 +1,11 @@
 package com.lh.back.dao;
 
-import java.util.Set;
+import org.apache.ibatis.annotations.Param;
 
 import com.lh.back.entity.User;
 
 public interface UserDao {
-	/**
-	 * @param username
-	 * @return
-	 */
-	User selectByUsername(String username);
-	
-	/**
-	 * @return
-	 */
-	Set<String> selectRolesByUsername();
 
-	/**
-	 * @return
-	 */
-	Set<String> selectPermissionsByUsername();
+	User selectByUsername(@Param("username") String username);
 	
 }

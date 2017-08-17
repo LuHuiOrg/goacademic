@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
-<title>会计后台管理系统</title>
+<title>学一手后台管理系统</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/icon.css">
@@ -30,7 +30,7 @@
     </div>
     <div region="center">
         <div class="easyui-tabs" fit="true" border="false" id="tabs">
-            <div title="Home" data-options="iconCls:'icon-home'">
+            <div title="主页" data-options="iconCls:'icon-home'">
                 <div align="center" style="padding-top: 50px">
                     <font color="grey" size="10">学一手后台管理系统</font>
                 </div>
@@ -41,16 +41,9 @@
         </div>
     </div>
     <div region="west" style="width: 200px; height: 500px;"
-        title="日常管理" split="true">
+        title="学一手后台管理" split="true">
         <div class="easyui-accordion">
-            <div title="部门管理" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
-                <a href="javascript:openTab(' Department Info','deptManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Department Info</a>
-            </div>
-            <div title="职位管理" data-options="selected:true,iconCls:'icon-schoolceo'" style="padding: 10px; height: 10px;">
-                <a href="javascript:openTab(' Position Info','positionManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Position Info</a>
-            </div>
-            <div title="员工管理" data-options="iconCls:'icon-students' " style="padding: 10px">
-                <a href="javascript:openTab(' Employee Info','employeeManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">Employee Info</a>
+            <div title="系统设置" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
             </div>
             <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
                 <a href="javascript:openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
@@ -66,7 +59,7 @@
 	<script type="text/javascript">
 	    var url;
 	    function addTab(url, text, iconCls) {
-	        var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${ctx}/views/"
+	        var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
 	                + url + "'></iframe>";
 	        $("#tabs").tabs("add", {
 	            title : text,

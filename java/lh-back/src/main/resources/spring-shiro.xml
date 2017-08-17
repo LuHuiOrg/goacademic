@@ -30,6 +30,7 @@
     	<property name="filterChainDefinitions">
     		<value>
     			/static/** = anon
+    			/robots.txt = anon
     			/login=anon
     			/**=user
     		</value>
