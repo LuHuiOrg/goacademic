@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lh.back.entity.User;
+import com.lh.back.utils.WeatherUtil;
 
 @Controller
 @RequestMapping(value ="/")
@@ -32,6 +33,7 @@ public class LoginController {
 			System.out.println("sessionId:"+session.getId());
 			System.out.println("sessionHost:"+session.getHost());
 			System.out.println("sessionTimeout:"+session.getTimeout());
+			session.setAttribute("weather", WeatherUtil.getWeather());
 			session.setAttribute("info", "session的数据");
 			return "redirect:/";
 		}catch(Exception e){

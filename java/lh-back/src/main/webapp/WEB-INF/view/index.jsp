@@ -10,76 +10,88 @@
 <meta name="renderer" content="webkit">
 <title>会计后台管理系统</title>
 <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="${ctx}/static/css/main.css?rev=@@hash">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/icon.css">
 </head>
-<body class="layout-boxed">
-	<div class="container">
-		<div class="header">
-			<div class="inner_logo"></div>
-			<div class="welcome">
-				<div class="welcome_content">
-					<a href="#"><span class="wel_msg">3</span></a>
-				</div>
-				<div class="welcome_user">
-					欢迎你登录<br /> <span>${sysUserName }</span>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="top_area">
-				<a href="#" class="rp_home" title="主页"></a> 
-				<a href="#" class="rp_help" title="帮助"></a> 
-				<a href="${ctx }/logout" class="rp_logout" title="退出"></a>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="mainbody">
-			<div class="sidebar">
-				<a href="#" class="close"></a>
-				<ul>
-					<li><div class="dan">
-							<a href="#"><span class="left_menu01"></span>阅卷准备</a>
-						</div></li>
-					<li>
-						<div class="dan">
-							<a href="#"><span class="left_menu02"></span>销售统计</a>
-						</div>
-						<ul class="sub_menu">
-							<span class="top_arr"></span>
-							<li class="first"><a href="${ctx}/contract/list">合同管理</a></li>
-						</ul>
-					</li>
-					<li>
-						<div class="dan">
-							<a href="#"><span class="left_menu03"></span>系统设置</a>
-						</div>
-						<ul class="sub_menu">
-							<span class="top_arr"></span>
-							<li class="first"><a href="${ctx}/customerInfo/list">业主信息管理</a></li>
-							<li><a href="#">学段年级信息设定</a></li>
-							<li><a href="#">学校信息设定</a></li>
-							<li><a href="#">科别信息设定</a></li>
-							<li><a href="#">不参加统计规则设定</a></li>
-							<li><a href="#">上报DBF参数设定</a></li>
-						</ul>
-					</li>
-					<li><div class="dan">
-							<a href="#"><span class="left_menu04"></span>权限设置</a>
-						</div></li>
-				</ul>
-			</div>
-			<div class="content">
-				<iframe id="iFrame1" name="iFrame1" src="${ctx}/welcome" width="100%" height="100%" frameborder="0"></iframe>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	
-	<!--# mergeTo:${ctx}/static/js/main.js -->
-		<!-- build:js ../../static/js/main.js -->
-	    <script replace="gulp" src="${ctx}/static/plugin/jquery/1.11.3/jquery.min.js"></script>
-		<script replace="gulp" src="${ctx}/static/javascript/common.js"></script>
-		<script replace="gulp" src="${ctx}/static/javascript/main.js"></script>
-	    <!-- endbuild -->
-	<!--# mergeTo -->
+<body class="easyui-layout">
+    <div region="north" style="height: 78px; background-color: #ffff">
+        <table width="100%">
+            <tr>
+                <td width="50%"></td>
+                <td valign="bottom" style="font-size: 20px; color: #8B8B8B; font-family: '\u6977\u4f53';" align="right" width="50%">
+                    <span>${sessionScope.weather.results.get(0).currentCity}</span>&nbsp;|&nbsp;
+                    <img alt="" src="${sessionScope.weather.results.get(0).weather_data.get(0).dayPictureUrl}"/>&nbsp;|&nbsp;
+                   <span>${sessionScope.weather.results.get(0).weather_data.get(0).weather}</span>&nbsp;|&nbsp; 
+                    <span>${sessionScope.weather.results.get(0).weather_data.get(0).date}</span>&nbsp;|&nbsp; 
+                    <font size="3">&nbsp;&nbsp;<strong>Current Admin:</strong> </font>
+                    <font color="red">${sessionScope.currentAdmin.username}</font></td>
+            </tr>
+        </table>
+    </div>
+    <div region="center">
+        <div class="easyui-tabs" fit="true" border="false" id="tabs">
+            <div title="Home" data-options="iconCls:'icon-home'">
+                <div align="center" style="padding-top: 50px">
+                    <font color="grey" size="10">学一手后台管理系统</font>
+                </div>
+                <div align="center" style="padding-top: 20px;">
+                    <font style="font-size: 20px;">http://47.92.123.48/</font>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div region="west" style="width: 200px; height: 500px;"
+        title="日常管理" split="true">
+        <div class="easyui-accordion">
+            <div title="部门管理" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
+                <a href="javascript:openTab(' Department Info','deptManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Department Info</a>
+            </div>
+            <div title="职位管理" data-options="selected:true,iconCls:'icon-schoolceo'" style="padding: 10px; height: 10px;">
+                <a href="javascript:openTab(' Position Info','positionManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Position Info</a>
+            </div>
+            <div title="员工管理" data-options="iconCls:'icon-students' " style="padding: 10px">
+                <a href="javascript:openTab(' Employee Info','employeeManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">Employee Info</a>
+            </div>
+            <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
+                <a href="javascript:openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
+            </div>
+            <div title="系统设置" data-options="iconCls:'icon-item'" style="padding: 10px; border: none;">
+                <a href="javascript:openTab(' Admin List','adminManage.jsp','icon-lxr')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">Admin List</a>
+                <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">Exit</a>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	    var url;
+	    function addTab(url, text, iconCls) {
+	        var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${ctx}/views/"
+	                + url + "'></iframe>";
+	        $("#tabs").tabs("add", {
+	            title : text,
+	            iconCls : iconCls,
+	            closable : true,
+	            content : content
+	        });
+	    }
+	    function openTab(text, url, iconCls) {
+	        if ($("#tabs").tabs("exists", text)) {
+	            $("#tabs").tabs("close", text);
+	            addTab(url, text, iconCls);
+	            $("#tabs").tabs("select", text);
+	        } else {
+	            addTab(url, text, iconCls);
+	        }
+	    }
+	    /* 退出 */
+	    function logout() {
+	        $.messager.confirm("system prompt","Do you want to exit?",function(r) {
+               if (r) {
+                   window.location.href = "${ctx}/admin/logout";
+               }
+            });
+	    }
+	</script>
 </body>
 </html>
