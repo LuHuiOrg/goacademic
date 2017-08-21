@@ -43,7 +43,8 @@
     <div region="west" style="width: 200px; height: 500px;"
         title="学一手后台管理" split="true">
         <div class="easyui-accordion">
-            <div title="系统设置" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
+            <div title="课程维护" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
+            	<a href="javascript:openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
             </div>
             <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
                 <a href="javascript:openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
