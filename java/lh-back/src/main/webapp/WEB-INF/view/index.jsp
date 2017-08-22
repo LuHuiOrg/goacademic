@@ -44,48 +44,49 @@
         title="学一手后台管理" split="true">
         <div class="easyui-accordion">
             <div title="课程维护" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
-            	<a href="javascript:openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
+            	<a href="javascript:home.openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
+            	<a href="javascript:home.openTab('章节管理','${ctx }/course/chapter')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">章节管理</a>
             </div>
             <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
-                <a href="javascript:openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
+                <a href="javascript:home.openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
             </div>
             <div title="系统设置" data-options="iconCls:'icon-item'" style="padding: 10px; border: none;">
-                <a href="javascript:openTab(' Admin List','adminManage.jsp','icon-lxr')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">Admin List</a>
-                <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">Exit</a>
+                <a href="javascript:home.openTab(' Admin List','adminManage.jsp','icon-lxr')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">Admin List</a>
+                <a href="javascript:home.logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">Exit</a>
             </div>
         </div>
     </div>
 	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
 	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-	    var url;
-	    function addTab(url, text, iconCls) {
-	        var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
+		var home = {
+			addTab:function(url, text, iconCls){
+				var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
 	                + url + "'></iframe>";
-	        $("#tabs").tabs("add", {
-	            title : text,
-	            iconCls : iconCls,
-	            closable : true,
-	            content : content
-	        });
-	    }
-	    function openTab(text, url, iconCls) {
-	        if ($("#tabs").tabs("exists", text)) {
-	            $("#tabs").tabs("close", text);
-	            addTab(url, text, iconCls);
-	            $("#tabs").tabs("select", text);
-	        } else {
-	            addTab(url, text, iconCls);
-	        }
-	    }
-	    /* 退出 */
-	    function logout() {
-	        $.messager.confirm("system prompt","Do you want to exit?",function(r) {
-               if (r) {
-                   window.location.href = "${ctx}/admin/logout";
-               }
-            });
-	    }
+		        $("#tabs").tabs("add", {
+		            title : text,
+		            iconCls : iconCls,
+		            closable : true,
+		            content : content
+		        });
+			},
+			openTab:function(text, url, iconCls){
+				if ($("#tabs").tabs("exists", text)) {
+		            $("#tabs").tabs("close", text);
+		            home.addTab(url, text, iconCls);
+		            $("#tabs").tabs("select", text);
+		        } else {
+		        	home.addTab(url, text, iconCls);
+		        }
+			},
+			logout:function(){
+				$.messager.confirm("system prompt","Do you want to exit?",function(r) {
+	               if (r) {
+	                   window.location.href = "${ctx}/admin/logout";
+	               }
+	            });
+			}
+		}
 	</script>
 </body>
 </html>
