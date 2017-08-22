@@ -9,8 +9,135 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
 <title>课程维护页面</title>
+<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/icon.css">
 </head>
-<body>
+<body style="margin: 1px;">
+    <table id="dg" title="课程维护" class="easyui-datagrid" fitColumns="true" pagination="true" rownumbers="true" url="${ctx}/course/list" fit="true" toolbar="#tb">
+        <thead>
+            <tr>
+                <th field="cb" checkbox="true" align="center"></th>
+				<th field="id" width="80" align="center" hidden="true">id</th>
+				<th field="name" width="80" align="center">课程名字</th>
+				<th field="description" width="80" align="center">课程详情</th>
+				<th field="cover" width="80" align="center">课程封面</th>
+				<th field="price" width="80" align="center">课程价格</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="tb">
+        <div>
+            <a href="javascript:openDeptAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a> 
+            <a href="javascript:openDeptModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
+            <a href="javascript:deleteDept()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        </div>
+        <div>
+            &nbsp;课程名字：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchDept()" />
+            <a href="javascript:searchDept()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查找</a>
+        </div>
+    </div>
 
+    <div id="dlg" class="easyui-dialog" style="width: 450px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post">
+            <table cellspacing="8px">
+                <tr>
+                    <td>课程名字:</td>
+                    <td><input type="text" id="name" name="name" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
+                </tr>
+                <tr>
+                    <td>课程价格:</td>
+                    <td><input type="text" id="price" name="price" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
+                </tr>
+                <tr>
+                    <td>课程封面:</td>
+                    <td><input type="text" id="cover" name="cover" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
+                </tr>
+                <tr>
+                    <td>课程描述:</td>
+                    <td><textarea id="description" name="description" style="width: 180px;height:80px;" class="easyui-validatebox" required="true"></textarea>&nbsp;<font color="red">*</font></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="dlg-buttons">
+        <a href="javascript:saveDept()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+        <a href="javascript:closeDeptDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    </div>
+	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
+	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+	<script>
+		var url;
+	    /* 根据条件查询部门 */
+	    function searchDept() {
+	        $("#dg").datagrid('load', {
+	            "name" : $("#s_name").val()
+	        });
+	    }
+		function resetValue() {
+			$("#dlg").dialog("close");
+	        $("#name").val("");
+	        $("#cover").val("");
+	        $("#price").val("");
+	        $("#description").val("");
+	    }
+		function openDeptAddDialog() {
+	        $("#dlg").dialog("open").dialog("setTitle", "添加新课程");
+	        url = "${ctx}/course/save";
+	    }
+		/* 保存部门，根据不同的 url 选择是添加还是修改 */
+	    function saveDept() {
+	        $("#fm").form("submit", {
+	            url : url,
+	            onSubmit : function() {
+	                return $(this).form("validate");
+	            },
+	            success : function(result) {
+	                $.messager.alert("系统提示", "保存成功！");
+	                resetValue();
+	                $("#dlg").dialog("close");
+	                $("#dg").datagrid("reload");
+	            }
+	        });
+	    }
+	    function openDeptModifyDialog() {
+	        var selectedRows = $("#dg").datagrid('getSelections');
+	        if (selectedRows.length != 1) {
+	            $.messager.alert("系统提示", "请选择要编辑的数据 ！");
+	            return;
+	        }
+	        var row = selectedRows[0];
+	        $("#dlg").dialog("open").dialog("setTitle","Edit department information");
+	        $('#fm').form('load', row);
+	        url = "${ctx}/course/save?id=" + row.id;
+	    }
+		function closeDeptDialog() {
+			resetValue();
+	    }
+		 /* 删除部门，可以是多个 */
+	    function deleteDept() {
+	        var selectedRows = $("#dg").datagrid('getSelections');
+	        if (selectedRows.length == 0) {
+	            $.messager.alert("系统提示", "请选择要删除的数据!");
+	            return;
+	        }
+	        var strIds = [];
+	        for ( var i = 0; i < selectedRows.length; i++) {
+	            strIds.push(selectedRows[i].id);
+	        }
+	        $.messager.confirm("系统提示","您确定要删除这些数据 <font color=red>"+ selectedRows.length + "</font> data?",function(r) {
+	        	if (r) {
+	           		$.post("${ctx}/course/delete",{"ids" : JSON.stringify(strIds)},function(result) {
+		                if (result.success) {
+		                    $.messager.alert("系统提示","删除成功!");
+		                    $("#dg").datagrid("reload");
+		                } else {
+		                    $.messager.alert("系统提示","删除失败，没有找到这个课程!");
+		                }
+	                }, "json");
+	            }
+	       });
+	    }
+	</script>
 </body>
 </html>

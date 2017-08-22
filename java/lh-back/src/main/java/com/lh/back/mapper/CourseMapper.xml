@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lh.back.dao.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.lh.back.entity.Course" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, description, cover, price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="listCourse" resultMap="BaseResultMap" parameterType="com.lh.back.entity.Course">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_course
+    <where>
+    	<trim prefix=" 1 = 1 ">
+			<if test="id != null" >
+		     and id = #{id,jdbcType=BIGINT}
+		    </if>
+		    <if test="name != null and name != ''" >
+		      and name = #{name,jdbcType=VARCHAR}
+		    </if>
+	        <if test="description != null and description != ''" >
+		      and description= #{description,jdbcType=VARCHAR}
+		    </if>
+	        <if test="cover != null and cover != ''" >
+		      and cover = #{cover,jdbcType=VARCHAR}
+		    </if>
+		    <if test="price != null and price != ''" >
+		      and price = #{price,jdbcType=DECIMAL}
+		    </if>
+		</trim>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_course
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteCourseByBatch" parameterType="java.util.ArrayList">
+  	delete from t_course where id in
+   	<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
+       #{item,jdbcType=BIGINT}
+   </foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.lh.back.entity.Course" >
+    insert into t_course (id, name, description, 
+      cover, price)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lh.back.entity.Course" >
+    insert into t_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lh.back.entity.Course" >
+    update t_course
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lh.back.entity.Course" >
+    update t_course
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

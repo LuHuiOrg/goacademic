@@ -3,10 +3,6 @@ package com.lh.back.entity;
 public class User {
     private Long id;
 
-    private String staffNo;
-
-    private Long officeId;
-
     private String name;
 
     private String username;
@@ -19,22 +15,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getStaffNo() {
-        return staffNo;
-    }
-
-    public void setStaffNo(String staffNo) {
-        this.staffNo = staffNo == null ? null : staffNo.trim();
-    }
-
-    public Long getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(Long officeId) {
-        this.officeId = officeId;
     }
 
     public String getName() {
