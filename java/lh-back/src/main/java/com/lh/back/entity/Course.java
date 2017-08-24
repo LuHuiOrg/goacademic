@@ -13,6 +13,8 @@ public class Course {
 
     private BigDecimal price;
 
+    private String tag;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +53,13 @@ public class Course {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag == null ? null : tag.trim();
     }
 }

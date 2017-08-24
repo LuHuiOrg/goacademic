@@ -19,7 +19,7 @@ public interface CourseMapper {
 
     int updateByPrimaryKey(Course record);
     
-    List<Course> listCourse(Course record);
+    List<Course> listCourse(@Param("record") Course record,@Param("courseIds") List<Long> courseIds);
     
     int deleteCourseByBatch(@Param("courseIds") List<Long> courseIds); 
 }

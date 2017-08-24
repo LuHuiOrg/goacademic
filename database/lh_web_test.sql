@@ -59,6 +59,7 @@ CREATE TABLE `t_course` (
   `description` varchar(1000) DEFAULT NULL COMMENT '课程详情',
   `cover` varchar(200) DEFAULT NULL COMMENT '课程封面',
   `price` decimal(12,2) DEFAULT NULL COMMENT '课程价格',
+  `tag`  varchar(200) DEFAULT NULL COMMENT '课程标签',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程表';
 
@@ -179,4 +180,20 @@ CREATE TABLE `t_student_info` (
 
 -- ----------------------------
 -- Records of t_student_info
+-- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for t_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tag`;
+CREATE TABLE `t_tag` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tag_name` varchar(50) NOT NULL COMMENT '标签名称',
+  `parent_id` bigint(20) DEFAULT NULL COMMENT '父id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标签表';
+
+-- ----------------------------
+-- Records of t_tag
 -- ----------------------------
