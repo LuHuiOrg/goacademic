@@ -20,7 +20,7 @@
 				<th field="id" width="80" align="center" hidden="true">id</th>
 				<th field="name" width="80" align="center">课程名字</th>
 				<th field="price" width="80" align="center">课程价格</th>
-				<th field="cover" width="80" align="center">课程封面</th>
+				<th data-options="field:'cover',width:80,align:'center',formatter:imgFormatter">课程封面</th>
 				<th field="description" width="80" align="center">课程详情</th>
             </tr>
         </thead>
@@ -151,6 +151,18 @@
 		       });
 			}
 		}
+		  //将url转换成图片    
+	    function imgFormatter(value,row,index){  
+			var rvalue ='';
+	        if('' != value && null != value){    
+				if(value.indexOf('http')>-1){
+					 rvalue = "<img  style='width:66px; height:60px;margin-left:3px;' src='"+ value+" ' title='点击查看图片'/>";
+				}else{
+					rvalue = "<img  style='width:66px; height:60px;margin-left:3px;' src='${ctx}"+ +value+" ' title='点击查看图片'/>";
+				}
+	          }     
+	        return  rvalue;          
+	       }
 	</script>
 </body>
 </html>
