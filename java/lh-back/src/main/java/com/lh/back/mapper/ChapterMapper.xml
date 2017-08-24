@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.renault.demo.dao.ChapterMapper" >
-  <resultMap id="BaseResultMap" type="com.renault.demo.entity.Chapter" >
+<mapper namespace="com.lh.back.dao.ChapterMapper" >
+  <resultMap id="BaseResultMap" type="com.lh.back.entity.Chapter" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="course_id" property="courseId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from t_chapter
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.renault.demo.entity.Chapter" >
+  <insert id="insert" parameterType="com.lh.back.entity.Chapter" >
     insert into t_chapter (id, course_id, name, 
       url, parent_id)
     values (#{id,jdbcType=BIGINT}, #{courseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.renault.demo.entity.Chapter" >
+  <insert id="insertSelective" parameterType="com.lh.back.entity.Chapter" >
     insert into t_chapter
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.renault.demo.entity.Chapter" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lh.back.entity.Chapter" >
     update t_chapter
     <set >
       <if test="courseId != null" >
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.renault.demo.entity.Chapter" >
+  <update id="updateByPrimaryKey" parameterType="com.lh.back.entity.Chapter" >
     update t_chapter
     set course_id = #{courseId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
