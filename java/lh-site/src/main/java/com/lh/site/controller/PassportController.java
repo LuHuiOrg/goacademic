@@ -37,8 +37,7 @@ public class PassportController{
 	//用户注册
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(StudentInfo studentInfo,HttpSession session){
-		 int resultTotal = 0;
-		 resultTotal = studentsService.addStudents(studentInfo);
+		 studentsService.addStudents(studentInfo);
 		 session.setAttribute("currentStudent", studentInfo);
 		 session.setAttribute("nickname", studentInfo.getNickname());
 		return "index";

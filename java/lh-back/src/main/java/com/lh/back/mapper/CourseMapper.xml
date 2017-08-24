@@ -18,28 +18,38 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   
-  <select id="listCourse" resultMap="BaseResultMap" parameterType="com.lh.back.entity.Course">
+  <select id="listCourse" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />
     from t_course
     <where>
-    	<trim prefix=" 1 = 1 ">
-			<if test="id != null" >
-		     and id = #{id,jdbcType=BIGINT}
-		    </if>
-		    <if test="name != null and name != ''" >
-		      and name = #{name,jdbcType=VARCHAR}
-		    </if>
-	        <if test="description != null and description != ''" >
-		      and description= #{description,jdbcType=VARCHAR}
-		    </if>
-	        <if test="cover != null and cover != ''" >
-		      and cover = #{cover,jdbcType=VARCHAR}
-		    </if>
-		    <if test="price != null and price != ''" >
-		      and price = #{price,jdbcType=DECIMAL}
-		    </if>
-		</trim>
+    	<choose>
+    		<when test="courseIds != null">
+    			id in 
+    			<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
+			       #{item,jdbcType=BIGINT}
+			   </foreach>
+    		</when>
+    		<otherwise>
+    			<trim prefix=" 1 = 1 ">
+					<if test="record.id != null" >
+				     and id = #{record.id,jdbcType=BIGINT}
+				    </if>
+				    <if test="record.name != null and record.name != ''" >
+				      and name = #{record.name,jdbcType=VARCHAR}
+				    </if>
+			        <if test="record.description != null and record.description != ''" >
+				      and description= #{record.description,record.jdbcType=VARCHAR}
+				    </if>
+			        <if test="record.cover != null and record.cover != ''" >
+				      and cover = #{record.cover,jdbcType=VARCHAR}
+				    </if>
+				    <if test="record.price != null and record.price != ''" >
+				      and price = #{record.price,jdbcType=DECIMAL}
+				    </if>
+				</trim>
+    		</otherwise>
+    	</choose>
     </where>
   </select>
   
@@ -52,7 +62,7 @@
   	delete from t_course where id in
    	<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
        #{item,jdbcType=BIGINT}
-   </foreach>
+    </foreach>
   </delete>
   
   <insert id="insert" parameterType="com.lh.back.entity.Course" >

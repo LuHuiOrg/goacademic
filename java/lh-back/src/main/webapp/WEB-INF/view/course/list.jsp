@@ -19,9 +19,9 @@
                 <th field="cb" checkbox="true" align="center"></th>
 				<th field="id" width="80" align="center" hidden="true">id</th>
 				<th field="name" width="80" align="center">课程名字</th>
-				<th field="description" width="80" align="center">课程详情</th>
-				<th field="cover" width="80" align="center">课程封面</th>
 				<th field="price" width="80" align="center">课程价格</th>
+				<th field="cover" width="80" align="center">课程封面</th>
+				<th field="description" width="80" align="center">课程详情</th>
             </tr>
         </thead>
     </table>
@@ -37,8 +37,8 @@
         </div>
     </div>
 
-    <div id="dlg" class="easyui-dialog" style="width: 450px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
-        <form id="fm" method="post">
+    <div id="dlg" class="easyui-dialog" style="width: 500px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post" enctype="multipart/form-data">
             <table cellspacing="8px">
                 <tr>
                     <td>课程名字:</td>
@@ -46,11 +46,15 @@
                 </tr>
                 <tr>
                     <td>课程价格:</td>
-                    <td><input type="text" id="price" name="price" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font>元</td>
+                    <td><input type="text" id="price" name="price" style="width: 180px" class="easyui-validatebox" data-options="required:true,validType:'intOrFloat'" />&nbsp;<font color="red">*</font>元</td>
                 </tr>
                 <tr>
                     <td>课程封面:</td>
-                    <td><input type="text" id="cover" name="cover" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
+                    <td>
+	                    <input id="coverFile" name="coverFile" type="file" onchange="common.change('coverImg','coverFile');" required="true"/>&nbsp;<font color="red">*</font> 
+	                    <input id="cover" type="text" name="cover" style="width: 0px; height: 0px; border: 0px; visibility: hidden;" />
+	                    <img id="coverImg" border="0" src="${ctx }/static/img/no-img.jpg" style="width:80%;display:table;border: 1px solid;">
+                    </td>
                 </tr>
                 <tr>
                     <td>课程描述:</td>
@@ -66,6 +70,7 @@
     </div>
 	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
 	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+	<script src="${ctx }/static/javascript/common.js"></script>
 	<script>
 		var course = {
 			url:"",
@@ -81,6 +86,9 @@
 		        $("#cover").val("");
 		        $("#price").val("");
 		        $("#description").val("");
+		        var file = $("#coverFile");
+		        file.after(file.clone().val(''));
+		        file.remove();
 			},
 			openDeptAddDialog:function(){
 				$("#dlg").dialog("open").dialog("setTitle", "添加新课程");
@@ -93,11 +101,14 @@
 		            onSubmit : function() {
 		                return $(this).form("validate");
 		            },
-		            success : function(result) {
-		                $.messager.alert("系统提示", "保存成功！");
-		                course.resetValue();
-		                $("#dlg").dialog("close");
-		                $("#dg").datagrid("reload");
+		            success : function(data) {
+		            	eval("var result = " + data);
+		            	if(result.flag){
+		            		$.messager.alert("系统提示", "保存成功！");
+			                course.resetValue();
+			                $("#dlg").dialog("close");
+			                $("#dg").datagrid("reload");
+		            	}
 		            }
 		        });
 			},
@@ -108,14 +119,14 @@
 		            return;
 		        }
 		        var row = selectedRows[0];
-		        $("#dlg").dialog("open").dialog("setTitle","Edit department information");
+		        $("#dlg").dialog("open").dialog("setTitle","修改课程信息");
 		        $('#fm').form('load', row);
 		        course.url = "${ctx}/course/save?id=" + row.id;
 			},
 			closeDeptDialog:function(){
 				course.resetValue();
 			},
-			/* 删除部门，可以是多个 */
+			/* 删除课程，可以是多个 */
 			deleteDept:function(){
 				var selectedRows = $("#dg").datagrid('getSelections');
 		        if (selectedRows.length == 0) {
@@ -128,8 +139,8 @@
 		        }
 		        $.messager.confirm("系统提示","您确定要删除这些数据 <font color=red>"+ selectedRows.length + "</font> data?",function(r) {
 		        	if (r) {
-		           		$.post("${ctx}/course/delete",{"ids" : JSON.stringify(strIds)},function(result) {
-			                if (result.success) {
+		           		$.post("${ctx}/course/delete",{"ids" : JSON.stringify(strIds)},function(data) {
+			                if (data.flag) {
 			                    $.messager.alert("系统提示","删除成功!");
 			                    $("#dg").datagrid("reload");
 			                } else {
