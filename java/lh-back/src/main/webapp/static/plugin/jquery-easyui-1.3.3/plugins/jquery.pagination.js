@@ -196,7 +196,7 @@
         },
         beforePageText: "Page",
         afterPageText: "of {pages}",
-        displayMsg: "Displaying {from} to {to} of {total} items",
+        displayMsg: "显示 {from} 到 {to} 共 {total} 条记录",
         nav: {
             first: {
                 iconCls: "pagination-first", handler: function () {

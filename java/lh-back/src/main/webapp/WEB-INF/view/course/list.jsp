@@ -53,7 +53,8 @@
                     <td>
 	                    <input id="coverFile" name="coverFile" type="file" onchange="common.change('coverImg','coverFile');" required="true"/>&nbsp;<font color="red">*</font> 
 	                    <input id="cover" type="text" name="cover" style="width: 0px; height: 0px; border: 0px; visibility: hidden;" />
-	                    <img id="coverImg" border="0" src="${ctx }/static/img/no-img.jpg" style="width:80%;display:table;border: 1px solid;">
+	                    <img id="coverImg" border="0" src="" style="width:80%;display:table;border: 1px solid;height:80px;width: 80px;">
+	                    
                     </td>
                 </tr>
                 <tr>
@@ -120,6 +121,7 @@
 		        }
 		        var row = selectedRows[0];
 		        $("#dlg").dialog("open").dialog("setTitle","修改课程信息");
+		        $("#coverImg").attr('src',row["cover"]); 
 		        $('#fm').form('load', row);
 		        course.url = "${ctx}/course/save?id=" + row.id;
 			},

@@ -23,7 +23,7 @@
                     <img alt="" src="${sessionScope.weather.results.get(0).weather_data.get(0).dayPictureUrl}"/>&nbsp;|&nbsp;
                    <span>${sessionScope.weather.results.get(0).weather_data.get(0).weather}</span>&nbsp;|&nbsp; 
                     <span>${sessionScope.weather.results.get(0).weather_data.get(0).date}</span>&nbsp;|&nbsp; 
-                    <font size="3">&nbsp;&nbsp;<strong>Current Admin:</strong> </font>
+                    <font size="3">&nbsp;&nbsp;<strong>当前管理员:</strong> </font>
                     <font color="red">${sessionScope.currentAdmin.username}</font></td>
             </tr>
         </table>
@@ -45,7 +45,7 @@
         <div class="easyui-accordion">
             <div title="课程维护" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
             	<a href="javascript:home.openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
-            	<a href="javascript:home.openTab('章节管理','${ctx }/course/chapter')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">章节管理</a>
+            	<a href="javascript:home.openTab('章节管理','${ctx }/chapter/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">章节管理</a>
             </div>
             <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
                 <a href="javascript:home.openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>

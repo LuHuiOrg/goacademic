@@ -47,4 +47,8 @@ public class CourseService {
 		}
 		return true;
 	}
+	
+	public Course selectByPrimaryKey(Long id){
+		return courseMapper.selectByPrimaryKey(id);
+	}
 }

@@ -1,7 +1,7 @@
 if ($.fn.pagination) {
     $.fn.pagination.defaults.beforePageText = 'Page';
     $.fn.pagination.defaults.afterPageText = 'of {pages}';
-    $.fn.pagination.defaults.displayMsg = 'Displaying {from} to {to} of {total} items';
+    $.fn.pagination.defaults.displayMsg = '显示 {from} 到 {to} 共 {total} 条记录';
 }
 if ($.fn.datagrid) {
     $.fn.datagrid.defaults.loadMsg = 'Processing, please wait ...';

@@ -10,6 +10,7 @@ public class Chapter {
     private String url;
 
     private Long parentId;
+    
 
     public Long getId() {
         return id;
@@ -50,4 +51,6 @@ public class Chapter {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+
+    
 }

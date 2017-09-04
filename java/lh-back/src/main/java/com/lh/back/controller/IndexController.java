@@ -21,12 +21,5 @@ public class IndexController {
 	public String welcome(){
 		return "welcome";
 	}
-	
-	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout(){
-		if(UserUtils.getSubject().isAuthenticated()){
-			UserUtils.getSubject().logout();// session 会销毁，在SessionListener监听session销毁，清理权限缓存  
-		}
-		return "redirect:/login";
-	}
+
 }
