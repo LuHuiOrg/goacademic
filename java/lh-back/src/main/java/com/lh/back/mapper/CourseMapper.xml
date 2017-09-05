@@ -12,6 +12,12 @@
   <sql id="Base_Column_List" >
     id, name, description, cover, price, category_id
   </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   
   <select id="listCourse" resultMap="BaseResultMap">
   	select 
@@ -122,4 +128,5 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
 </mapper>

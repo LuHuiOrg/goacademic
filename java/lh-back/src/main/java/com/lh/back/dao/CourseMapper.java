@@ -10,6 +10,8 @@ public interface CourseMapper {
 
     int insertSelective(Course record);
 
+    Course selectByPrimaryKey(Long id);
+
     int updateByPrimaryKeySelective(Course record);
 
     List<Course> listCourse(@Param("record") Course record,@Param("courseIds") List<Long> courseIds);
