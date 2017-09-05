@@ -9,3 +9,5 @@
 nav[aria-label='Page navigation']{text-align: center;}
 
 .copyright p{margin: 20px 0px;}
+
+.thumbnail a img{height:120px;}

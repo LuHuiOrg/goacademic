@@ -6,8 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.lh.back.entity.Chapter;
-import com.lh.back.entity.Course;
-
 
 public interface ChapterMapper {
     int deleteByPrimaryKey(Long id);

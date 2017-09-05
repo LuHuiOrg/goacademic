@@ -18,13 +18,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li <c:if test="${param.urlactive eq 'home' }">class="active"</c:if>><a href="${ctx}/?urlactive=home">首页</a></li>
-        <c:if test="${empty sessionScope.currentStudent}">
-        <li <c:if test="${param.urlactive eq 'tologin' }">class="active"</c:if>><a href="${ctx }/passport/tologin?urlactive=tologin">登录</a></li>
+        <c:if test="${empty sessionScope.StudentInfo}">
+        <li <c:if test="${param.urlactive eq 'login' }">class="active"</c:if>><a href="${ctx }/passport/login?urlactive=login">登录</a></li>
         <li <c:if test="${param.urlactive eq 'toregister' }">class="active"</c:if>><a href="${ctx }/passport/toregister?urlactive=toregister">注册</a></li>
         </c:if>
-        <c:if test="${not empty sessionScope.nickname}">
+        <c:if test="${not empty sessionScope.StudentInfo.nickname}">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.nickname}<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.StudentInfo.nickname}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">个人资料</a></li>
             <li><a href="${ctx}/office/myCourse">我的课程</a></li>

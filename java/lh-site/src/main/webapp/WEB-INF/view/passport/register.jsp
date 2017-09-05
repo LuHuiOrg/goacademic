@@ -19,14 +19,14 @@
 	  <div class="form-group">
 	    <label for="firstname" class="col-sm-2 control-label">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 	    <div class="col-sm-8">
-	        <input type="text" class="form-control" id="nickname" name="nickname"  value="${studentInfo.nickname}" placeholder="请输入昵称">
+	        <input type="text" class="form-control" id="nickname" name="nickname"  value="${sessionScope.StudentInfo.nickname}" placeholder="请输入昵称">
 			<span class="help-block" style="color:red;" id="">* 必填项</span>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="lastname" class="col-sm-2 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 	    <div class="col-sm-8">
-	        <input type="password" class="form-control" id="password" name="password" value="${studentInfo.password}" placeholder="请输入密码">
+	        <input type="password" class="form-control" id="password" name="password" value="${sessionScope.StudentInfo.password}" placeholder="请输入密码">
 		    <span class="help-block" style="color:red;">* 必填项</span>
 	    </div>
 	  </div>
