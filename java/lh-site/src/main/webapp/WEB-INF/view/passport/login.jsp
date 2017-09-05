@@ -31,11 +31,11 @@
 			        <form role="form" id="fm" action="${ctx }/passport/login" method="post">
 					  <div class="form-group">
 					    <label for="name">用户名</label>
-					    <input type="text" class="form-control" id="nickname" name="nickname" value="${studentInfo.nickname}" placeholder="请输入昵称/邮箱/手机号">
+					    <input type="text" class="form-control" id="nickname" name="nickname" value="${sessionScope.StudentInfo.nickname}" placeholder="请输入昵称/邮箱/手机号">
 					  </div>
 					  <div class="form-group">
 					    <label for="name">密码</label>
-					    <input type="password" class="form-control" id="password" name="password"  value="${studentInfo.password}" placeholder="请输入密码">
+					    <input type="password" class="form-control" id="password" name="password"  value="${sessionScope.StudentInfo.password}" placeholder="请输入密码">
 					  </div>
 					  <div class="checkbox">
 					    <label><input type="checkbox">记住密码</label>

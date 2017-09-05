@@ -17,14 +17,15 @@
 	
 	<mvc:resources location="/static/" mapping="/static/**"/>
 
-	<!-- 拦截器配置  
+	<!-- 拦截器配置  -->
     <mvc:interceptors>
-    	配置登录拦截器 
+    	<!-- 配置登录拦截器  -->
     	<mvc:interceptor>
-    	    <mvc:mapping path="/enclosure/**"/>
+    	    <mvc:mapping path="/office/**"/>
+    	    <mvc:mapping path="/shop/**"/>
     	    <bean class="com.lh.site.intercepter.SessionInterceptor"/>
     	</mvc:interceptor>
-    </mvc:interceptors> -->
+    </mvc:interceptors> 
 
 	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
 	<mvc:annotation-driven>
