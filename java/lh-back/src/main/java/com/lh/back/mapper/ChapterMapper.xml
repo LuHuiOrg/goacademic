@@ -93,7 +93,7 @@
   
  	<!-- 批量删除章节 -->
     <delete id="deleteChapterByBatch" parameterType="java.util.ArrayList">
-  	delete from t_course where id in
+  	delete from t_chapter where id in
    	<foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
        #{item,jdbcType=BIGINT}
    </foreach>
@@ -108,7 +108,7 @@
    <select id="listChapter" resultMap="BaseResultMap" parameterType="com.lh.back.entity.Chapter">
   	select 
     <include refid="Base_Column_List" />
-    from t_course
+    from t_chapter
     <where>
     	<trim prefix=" 1 = 1 ">
 		   <if test="id != null" >
@@ -129,4 +129,29 @@
 		</trim>
     </where>
   </select>
+  
+  
+      <!-- 根据条件查询公告 -->
+    <select id="findChapters" parameterType="Map" resultMap="BaseResultMap">
+       	select 
+    <include refid="Base_Column_List" />
+    from t_chapter 
+  <where>
+        <if test="name!=null and name!='' ">
+             name like #{name}
+        </if>
+  </where>
+          limit 
+                     #{firstPage}, 
+                     #{rows}; 
+    </select>
+    <!-- 根据条件查询公告数量 -->
+    <select id="getCount" parameterType="Map" resultType="Integer">
+        select count(*) from t_chapter
+        <where>
+            <if test="name!=null and name!='' ">
+                name like #{name}
+            </if>
+        </where>
+    </select>
 </mapper>
