@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-09-04 17:43:09
+Date: 2017-09-05 11:50:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,7 +77,7 @@ CREATE TABLE `t_course` (
   `price` decimal(12,2) DEFAULT NULL COMMENT '课程价格',
   `category_id` bigint(20) unsigned DEFAULT NULL COMMENT '课程所属分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='课程表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='课程表';
 
 -- ----------------------------
 -- Records of t_course
@@ -164,9 +164,13 @@ CREATE TABLE `t_student_info` (
   `email` varchar(50) NOT NULL COMMENT '邮箱',
   `category_id` bigint(20) unsigned DEFAULT NULL COMMENT '学生所属分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
 
 -- ----------------------------
 -- Records of t_student_info
 -- ----------------------------
 INSERT INTO `t_student_info` VALUES ('1', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);
+INSERT INTO `t_student_info` VALUES ('2', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);
+INSERT INTO `t_student_info` VALUES ('3', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);
+INSERT INTO `t_student_info` VALUES ('4', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);
+INSERT INTO `t_student_info` VALUES ('5', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);

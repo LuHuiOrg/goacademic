@@ -30,6 +30,7 @@
  	<jstl.version>1.2</jstl.version>
  	<servlet.version>3.1.0</servlet.version>
  	<shiro.version>1.2.4</shiro.version>
+ 	<json-lib.version>2.2.3</json-lib.version>
     <!-- 配置项目编码为UTF-8 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
   </properties>
@@ -225,13 +226,13 @@
 		<artifactId>shiro-core</artifactId>
 		<version>${shiro.version}</version>
 	</dependency>
-		<!-- shiro的web插件 -->
+	<!-- shiro的web插件 -->
 	<dependency>
 		<groupId>org.apache.shiro</groupId>
 		<artifactId>shiro-web</artifactId>
 		<version>${shiro.version}</version>
 	</dependency>
-		<!-- shiro的spring插件 -->
+	<!-- shiro的spring插件 -->
 	<dependency>
 		<groupId>org.apache.shiro</groupId>
 		<artifactId>shiro-spring</artifactId>
@@ -239,10 +240,10 @@
 	</dependency>
 	
 	<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>2.2.3</version>
-			<classifier>jdk15</classifier>
+		<groupId>net.sf.json-lib</groupId>
+		<artifactId>json-lib</artifactId>
+		<version>${json-lib.version}</version>
+		<classifier>jdk15</classifier>
 	</dependency>
 	
   </dependencies>
