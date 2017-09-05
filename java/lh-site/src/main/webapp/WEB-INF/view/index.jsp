@@ -59,56 +59,20 @@
         </div>
 	</div>
 	<div class="container course-cont">
+	  <c:forEach var="course" items="${pageInfo.list }">
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
-	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
+	      <a href="${ctx }/course/detail"><img src="${course.cover }" alt="课程"></a>
 	      <div class="caption">
-	        <h3>java课程</h3>
-	        <p>这是一个非常好的java课程</p>
+	        <h3>${course.name }</h3>
+	        <p>${course.description }</p>
 	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
 	      </div>
 	    </div>
 	  </div>
-	  <div class="col-sm-6 col-md-4">
-	    <div class="thumbnail">
-	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
-	      <div class="caption">
-	        <h3>java课程</h3>
-	        <p>这是一个非常好的java课程</p>
-	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6 col-md-4">
-	    <div class="thumbnail">
-	      <a href="${ctx }/course/detail"><img src="${ctx}/static/img/course.jpg" alt="课程"></a>
-	      <div class="caption">
-	        <h3>java课程</h3>
-	        <p>这是一个非常好的java课程</p>
-	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
-	      </div>
-	    </div>
-	  </div>
+	  </c:forEach>
 	</div>
-	<nav aria-label="Page navigation">
-	  <ul class="pagination">
-	    <li>
-	      <a href="#" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <li><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li>
-	      <a href="#" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
-   	</nav>
+	<%@ include file="common/page.jsp" %>
 	<%@ include file="common/bottom.jsp" %>
 	<script type="text/javascript">
 		$(function(){

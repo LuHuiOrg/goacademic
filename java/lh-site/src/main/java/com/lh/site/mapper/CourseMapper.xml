@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lh.back.dao.CourseMapper" >
-  <resultMap id="BaseResultMap" type="com.lh.back.entity.Course" >
+<mapper namespace="com.lh.site.dao.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.lh.site.entity.Course" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
@@ -12,53 +12,30 @@
   <sql id="Base_Column_List" >
     id, name, description, cover, price, category_id
   </sql>
-  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <select id="listCourse" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />
     from t_course
-    <where>
-    	<choose>
-    		<when test="courseIds != null">
-    			id in 
-    			<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
-			       #{item,jdbcType=BIGINT}
-			   </foreach>
-    		</when>
-    		<otherwise>
-    			<trim prefix=" 1 = 1 ">
-					<if test="record.id != null" >
-				     and id = #{record.id,jdbcType=BIGINT}
-				    </if>
-				    <if test="record.name != null and record.name != ''" >
-				      and name = #{record.name,jdbcType=VARCHAR}
-				    </if>
-			        <if test="record.description != null and record.description != ''" >
-				      and description= #{record.description,record.jdbcType=VARCHAR}
-				    </if>
-			        <if test="record.cover != null and record.cover != ''" >
-				      and cover = #{record.cover,jdbcType=VARCHAR}
-				    </if>
-				    <if test="record.price != null and record.price != ''" >
-				      and price = #{record.price,jdbcType=DECIMAL}
-				    </if>
-				    <if test="record.categoryId != null">
-				      and category_id = #{record.categoryId,jdbcType=BIGINT}
-				    </if>
-				</trim>
-    		</otherwise>
-    	</choose>
-    </where>
   </select>
-  
-  <delete id="deleteCourseByBatch" parameterType="java.util.ArrayList">
-  	delete from t_course where id in
-   	<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
-       #{item,jdbcType=BIGINT}
-    </foreach>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_course
+    where id = #{id,jdbcType=BIGINT}
   </delete>
-  
-  <insert id="insertSelective" parameterType="com.lh.back.entity.Course" >
+  <insert id="insert" parameterType="com.lh.site.entity.Course" >
+    insert into t_course (id, name, description, 
+      cover, price, category_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{categoryId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lh.site.entity.Course" >
     insert into t_course
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,11 +74,11 @@
         #{price,jdbcType=DECIMAL},
       </if>
       <if test="categoryId != null" >
-        #{category_id,jdbcType=BIGINT},
+        #{categoryId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lh.back.entity.Course" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lh.site.entity.Course" >
     update t_course
     <set >
       <if test="name != null" >
@@ -117,9 +94,18 @@
         price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="categoryId != null" >
-        category_id = #{category_id,jdbcType=BIGINT},
+        category_id = #{categoryId,jdbcType=BIGINT},
       </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lh.site.entity.Course" >
+    update t_course
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      category_id = #{categoryId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

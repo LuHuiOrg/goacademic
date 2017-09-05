@@ -1,4 +1,4 @@
-package com.lh.back.entity;
+package com.lh.site.entity;
 
 import java.math.BigDecimal;
 
@@ -55,12 +55,11 @@ public class Course {
         this.price = price;
     }
 
-	public Long getCategoryId() {
-		return categoryId;
-	}
+    public Long getCategoryId() {
+        return categoryId;
+    }
 
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
-	}
-
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }

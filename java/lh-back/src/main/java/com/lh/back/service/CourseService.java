@@ -30,9 +30,9 @@ public class CourseService {
 	public boolean saveAndEditCourse(Course course){
 		int changeCount = 0;
 		if (course.getId() == null) {
-			changeCount = courseMapper.insert(course);
+			changeCount = courseMapper.insertSelective(course);
 		}else{
-			changeCount = courseMapper.updateByPrimaryKey(course);
+			changeCount = courseMapper.updateByPrimaryKeySelective(course);
 		}
 		return (changeCount > 0) ? true : false;
 	}
@@ -46,5 +46,9 @@ public class CourseService {
 			}
 		}
 		return true;
+	}
+	
+	public Course selectByPrimaryKey(Long id){
+		return courseMapper.selectByPrimaryKey(id);
 	}
 }

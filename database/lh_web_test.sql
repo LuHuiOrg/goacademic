@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-08-18 15:28:02
+Date: 2017-09-04 17:43:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,12 +25,28 @@ CREATE TABLE `sys_user` (
   `username` varchar(20) DEFAULT NULL COMMENT '员工登录系统名',
   `password` char(32) DEFAULT NULL COMMENT '员工登录系统密码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='公司员工表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='公司员工表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', '曾小辉', 'zengxiaohui', '123456');
+
+-- ----------------------------
+-- Table structure for t_category
+-- ----------------------------
+DROP TABLE IF EXISTS `t_category`;
+CREATE TABLE `t_category` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(50) NOT NULL COMMENT '名称',
+  `parent_id` bigint(20) DEFAULT NULL COMMENT '父id',
+  `parent_ids` varchar(200) DEFAULT NULL COMMENT '所有父id，'''',''''分隔',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='分类表';
+
+-- ----------------------------
+-- Records of t_category
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_chapter
@@ -43,7 +59,7 @@ CREATE TABLE `t_chapter` (
   `url` varchar(200) DEFAULT NULL COMMENT '章节视频url地址',
   `parent_id` bigint(20) DEFAULT NULL COMMENT '父id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程章节表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='课程章节表';
 
 -- ----------------------------
 -- Records of t_chapter
@@ -59,27 +75,14 @@ CREATE TABLE `t_course` (
   `description` varchar(1000) DEFAULT NULL COMMENT '课程详情',
   `cover` varchar(200) DEFAULT NULL COMMENT '课程封面',
   `price` decimal(12,2) DEFAULT NULL COMMENT '课程价格',
-  `tag`  varchar(200) DEFAULT NULL COMMENT '课程标签',
+  `category_id` bigint(20) unsigned DEFAULT NULL COMMENT '课程所属分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='课程表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='课程表';
 
 -- ----------------------------
 -- Records of t_course
 -- ----------------------------
-
--- ----------------------------
--- Table structure for t_grade
--- ----------------------------
-DROP TABLE IF EXISTS `t_grade`;
-CREATE TABLE `t_grade` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(10) NOT NULL COMMENT '年级名字',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='年级表';
-
--- ----------------------------
--- Records of t_grade
--- ----------------------------
+INSERT INTO `t_course` VALUES ('3', 'java课程培训', '23423收到广东省', 'http://47.92.123.48/images/cover/ef7554cf-2929-4f8d-8a5c-78bfbe118682.png', '250.00', null);
 
 -- ----------------------------
 -- Table structure for t_mac
@@ -112,7 +115,7 @@ CREATE TABLE `t_order` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `remarks` varchar(200) DEFAULT NULL COMMENT '备注说明',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单表';
 
 -- ----------------------------
 -- Records of t_order
@@ -127,7 +130,7 @@ CREATE TABLE `t_order_item` (
   `order_code` char(12) NOT NULL COMMENT '订单编号',
   `course_id` bigint(20) NOT NULL COMMENT '课程id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单明细表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单明细表';
 
 -- ----------------------------
 -- Records of t_order_item
@@ -143,24 +146,10 @@ CREATE TABLE `t_shopping_cart` (
   `course_id` bigint(20) NOT NULL COMMENT '课程id',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='购物车表';
 
 -- ----------------------------
 -- Records of t_shopping_cart
--- ----------------------------
-
--- ----------------------------
--- Table structure for t_specialty
--- ----------------------------
-DROP TABLE IF EXISTS `t_specialty`;
-CREATE TABLE `t_specialty` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(30) NOT NULL COMMENT '专业名称',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生所属专业表';
-
--- ----------------------------
--- Records of t_specialty
 -- ----------------------------
 
 -- ----------------------------
@@ -173,27 +162,11 @@ CREATE TABLE `t_student_info` (
   `password` varchar(32) NOT NULL COMMENT '密码',
   `mobile` varchar(30) NOT NULL COMMENT '手机号',
   `email` varchar(50) NOT NULL COMMENT '邮箱',
-  `specialty_id` bigint(20) DEFAULT NULL COMMENT 't_specialty表的id（学生所属专业）',
-  `grade_id` bigint(20) DEFAULT NULL COMMENT 't_grade表的id（学生所属年级）',
+  `category_id` bigint(20) unsigned DEFAULT NULL COMMENT '学生所属分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
 
 -- ----------------------------
 -- Records of t_student_info
 -- ----------------------------
-
-
--- ----------------------------
--- Table structure for t_tag
--- ----------------------------
-DROP TABLE IF EXISTS `t_tag`;
-CREATE TABLE `t_tag` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `tag_name` varchar(50) NOT NULL COMMENT '标签名称',
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '父id',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标签表';
-
--- ----------------------------
--- Records of t_tag
--- ----------------------------
+INSERT INTO `t_student_info` VALUES ('1', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);

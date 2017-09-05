@@ -11,9 +11,7 @@ public class StudentInfo {
 
     private String email;
 
-    private Long specialtyId;
-
-    private Long gradeId;
+    private Long categoryId;
 
     public Long getId() {
         return id;
@@ -55,28 +53,12 @@ public class StudentInfo {
         this.email = email == null ? null : email.trim();
     }
 
-    public Long getSpecialtyId() {
-        return specialtyId;
-    }
-
-    public void setSpecialtyId(Long specialtyId) {
-        this.specialtyId = specialtyId;
-    }
-
-    public Long getGradeId() {
-        return gradeId;
-    }
-
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
-    }
-
-	@Override
-	public String toString() {
-		return "StudentInfo [id=" + id + ", nickname=" + nickname
-				+ ", password=" + password + ", mobile=" + mobile + ", email="
-				+ email + ", specialtyId=" + specialtyId + ", gradeId="
-				+ gradeId + "]";
+	public Long getCategoryId() {
+		return categoryId;
 	}
-    
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
 }
