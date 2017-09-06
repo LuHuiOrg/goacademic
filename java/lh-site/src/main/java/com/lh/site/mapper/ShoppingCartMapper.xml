@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lh.site.dao.ShoppingCartMapper" >
+  <resultMap id="BaseResultMap" type="com.lh.site.entity.ShoppingCart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="student_info_id" property="studentInfoId" jdbcType="BIGINT" />
+    <result column="course_id" property="courseId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, student_info_id, course_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shopping_cart
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getShoppingCartByIds" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+      from t_shopping_cart
+     where student_info_id = #{studentInfoId, jdbcType=BIGINT}
+       and course_id = #{courseId, jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shopping_cart
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lh.site.entity.ShoppingCart" >
+    insert into t_shopping_cart (id, student_info_id, course_id, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{studentInfoId,jdbcType=BIGINT}, #{courseId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lh.site.entity.ShoppingCart" >
+    insert into t_shopping_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="studentInfoId != null" >
+        student_info_id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="studentInfoId != null" >
+        #{studentInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lh.site.entity.ShoppingCart" >
+    update t_shopping_cart
+    <set >
+      <if test="studentInfoId != null" >
+        student_info_id = #{studentInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lh.site.entity.ShoppingCart" >
+    update t_shopping_cart
+    set student_info_id = #{studentInfoId,jdbcType=BIGINT},
+      course_id = #{courseId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
