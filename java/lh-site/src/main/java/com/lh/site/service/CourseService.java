@@ -10,8 +10,8 @@ import com.github.pagehelper.PageInfo;
 import com.lh.site.dao.CourseMapper;
 import com.lh.site.entity.Course;
 
-@Service("CouseService")
-public class CouseService {
+@Service("CourseService")
+public class CourseService {
 
 	@Autowired
 	private CourseMapper courseMapper;
@@ -21,5 +21,9 @@ public class CouseService {
 		PageHelper.startPage(pageNum, 10, true);
 		List<Course> courseList = courseMapper.listCourse();
 		return new PageInfo<Course>(courseList);
+	}
+	
+	public Course getCourseById(Long courseId){
+		return courseMapper.selectByPrimaryKey(courseId);
 	}
 }

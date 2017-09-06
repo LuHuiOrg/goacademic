@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.github.pagehelper.PageInfo;
 import com.lh.site.entity.Course;
-import com.lh.site.service.CouseService;
+import com.lh.site.service.CourseService;
 
 @Controller
 @RequestMapping(value = "/")
 public class IndexController {
 	
 	@Autowired
-	private CouseService couseService;
+	private CourseService couseService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(ModelMap model,Integer pageNum) {

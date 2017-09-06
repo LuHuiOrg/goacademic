@@ -23,89 +23,10 @@
     <include refid="Base_Column_List" />
     from t_course
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_course
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.lh.site.entity.Course" >
-    insert into t_course (id, name, description, 
-      cover, price, category_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{cover,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{categoryId,jdbcType=BIGINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.lh.site.entity.Course" >
-    insert into t_course
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-      <if test="cover != null" >
-        cover,
-      </if>
-      <if test="price != null" >
-        price,
-      </if>
-      <if test="categoryId != null" >
-        category_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null" >
-        #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="categoryId != null" >
-        #{categoryId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lh.site.entity.Course" >
-    update t_course
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null" >
-        cover = #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="categoryId != null" >
-        category_id = #{categoryId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lh.site.entity.Course" >
-    update t_course
-    set name = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
-      category_id = #{categoryId,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+  <select id="listCourseByShoppingCart" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT cour.id, cour.name, cour.description, cour.cover, cour.price, cour.category_id
+    FROM t_course AS cour
+	INNER JOIN `t_shopping_cart` AS sca ON cour.id = sca.course_id
+	WHERE sca.student_info_id = #{studentInfoId,jdbcType=BIGINT}
+  </select>
 </mapper>

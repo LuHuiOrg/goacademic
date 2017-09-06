@@ -54,7 +54,7 @@ public class PassportController{
 			model.put("errorMsg", "用户名或密码不正确！");
 			return "passport/login";
 		}
-		 return "index";
+		return "redirect:/";
 	}
 	
 }

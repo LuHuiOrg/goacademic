@@ -66,7 +66,7 @@
 	      <div class="caption">
 	        <h3>${course.name }</h3>
 	        <p>${course.description }</p>
-	        <p><a href="#" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
+	        <p><a href="#" onclick="javascript:home.addCart(this);" courseId="${course.id }" class="btn btn-primary buy" role="button">购买</a> <a href="#" class="btn btn-default" role="button">收藏</a></p>
 	      </div>
 	    </div>
 	  </div>
@@ -74,12 +74,6 @@
 	</div>
 	<%@ include file="common/page.jsp" %>
 	<%@ include file="common/bottom.jsp" %>
-	<script type="text/javascript">
-		$(function(){
-			$(".buy").click(function(){
-				layer.alert('已成功加入购物车，请到购物车结算', {icon: 6});
-			});
-		});
-	</script>
+	<script type="text/javascript" src="${ctx }/static/js/home.js"></script>
 </body>
 </html>
