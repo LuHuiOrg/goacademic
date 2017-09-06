@@ -25,20 +25,19 @@
 		<table class="table">
 			<thead><tr> <th>商品信息</th> <th></th> <th></th>   </tr> </thead>
 			<tbody>
-				<tr>
-					<td><img src="/lh-site/static/img/product_01.jpg" width="75"></td>
-					<td><p>学习最牛逼的课程</p></td>
-					<td>￥120</td>
-				</tr>
-				<tr>
-					<td><img src="/lh-site/static/img/product_01.jpg" width="75"></td>
-					<td><p>学习最牛逼的课程</p></td>
-					<td>￥120</td>
-				</tr>
+				<c:set var="amount" value="0"></c:set>
+				<c:forEach var="course" items="${listCourse }">
+					<c:set var="amount" value="${amount+course.price }"></c:set> 
+					<tr>
+						<td><img src="${course.cover }" width="75"></td>
+						<td><p>${course.name }</p></td>
+						<td>￥${course.price }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="col-md-12 text-right">
-			总计: <span class="cost_price">￥499.00</span><br>
+			总计: <span class="cost_price">￥${amount}</span><br>
 			<a class="btn btn-primary btn-large btn-submit" href="/lh-site/shop/payment">提交订单<i class="glyphicon glyphicon-chevron-right"></i></a>
 		</div>
 	</div>

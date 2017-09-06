@@ -1,16 +1,24 @@
 package com.lh.site.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lh.site.dao.CourseMapper;
+import com.lh.site.dao.OrderItemMapper;
+import com.lh.site.dao.OrderMapper;
 import com.lh.site.dao.ShoppingCartMapper;
 import com.lh.site.entity.Course;
+import com.lh.site.entity.Order;
+import com.lh.site.entity.OrderItem;
 import com.lh.site.entity.ShoppingCart;
+import com.lh.site.utils.DateUtils;
 import com.lh.site.utils.ResultUtils;
 
 /**
@@ -27,6 +35,12 @@ public class ShoppingCartService {
 	
 	@Autowired
 	private CourseMapper courseMapper;
+	
+	@Autowired
+	private OrderMapper orderMapper;
+	
+	@Autowired
+	private OrderItemMapper orderItemMapper;
 	
 	public Map<String,Object> addCourseToShoppingCart(Long courseId,Long studentInfoId){
 		ShoppingCart shoppingCart = shoppingCartMapper.getShoppingCartByIds(courseId, studentInfoId);
@@ -48,4 +62,30 @@ public class ShoppingCartService {
 	public List<Course> listCourseByShoppingCart(Long studentInfoId){
 		return courseMapper.listCourseByShoppingCart(studentInfoId);
 	}
+	
+	@Transactional(readOnly = false)
+	public void createOrderByShoppingCart(Long studentInfoId,List<Course> courseList){
+		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+		BigDecimal orderAmount = BigDecimal.ZERO;
+		String orderCode = DateUtils.getOrderNum();
+		for (Course course : courseList) {
+			orderAmount = orderAmount.add(course.getPrice());
+			OrderItem orderItem = new OrderItem();
+			orderItem.setCourseId(course.getId());
+			orderItem.setOrderCode(orderCode);
+			orderItemList.add(orderItem);
+		}
+		Order order = new Order();
+		order.setOrderCode(orderCode);
+		order.setStudentInfoId(studentInfoId);
+		order.setOrderAmount(orderAmount);
+		order.setPayType(0);
+		order.setPayStatus(0);
+		order.setCreateTime(new Date());
+		order.setRemarks("来自网页订单");
+		orderMapper.insert(order);
+		orderItemMapper.insertByBatch(orderItemList);
+		shoppingCartMapper.deleteByStudentInfoId(studentInfoId);
+	}
+	
 }

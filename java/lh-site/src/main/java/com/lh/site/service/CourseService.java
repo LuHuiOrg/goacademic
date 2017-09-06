@@ -18,7 +18,7 @@ public class CourseService {
 	
 	public PageInfo<Course> listCourse(Integer pageNum){
 		pageNum = pageNum != null ? pageNum : 1;
-		PageHelper.startPage(pageNum, 10, true);
+		PageHelper.startPage(pageNum, 9, true);
 		List<Course> courseList = courseMapper.listCourse();
 		return new PageInfo<Course>(courseList);
 	}

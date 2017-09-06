@@ -84,50 +84,13 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-8">
-	      <button type="button" onclick="javascript:register();" class="btn btn-default btn-lg btn-block">注册</button>
+	      <button type="button" onclick="javascript:passport.register();" class="btn btn-default btn-lg btn-block">注册</button>
 	    </div>
 	  </div>
 	</form>
 	<%@ include file="../common/bottom.jsp" %>
+	<script src="${ctx }/static/js/passport.js"></script>
 	<script type="text/javascript">
-	function register() {
-		var nickname = $("#nickname").val();
-		var password = $("#password").val();
-		var checkpassword = $("#checkpassword").val();
-		var mobile = $("#mobile").val();
-		var email = $("#email").val();
-		var verify = $("#verify").val();
-		if (nickname == null || nickname == "") {
-			layer.alert('昵称不能为空', {icon: 6});
-			return;
-		}
-		if (password == null || password == "") {
-			layer.alert('密码不能为空', {icon: 6});
-			return;
-		}
-		if (checkpassword == null || checkpassword == "") {
-			layer.alert('确认密码不能为空', {icon: 6});
-			return;
-		}
-		if (checkpassword!=password) {
-			layer.alert('两次密码不同，请重新输入', {icon: 6});
-			return;
-		}
-		if (mobile == null || mobile == "") {
-			layer.alert('电话不能为空', {icon: 6});
-			return;
-		}
-		if (verify == null || verify == "") {
-			layer.alert('验证码不能为空', {icon: 6});
-			return;
-		}
-		if (email == null || email == "") {
-			layer.alert('邮箱不能为空', {icon: 6});
-			return;
-		}
-		$("#fm").submit();
-	
-	}
 	if ('${errorMsg}' != '') {
 		alert('${errorMsg}');
 		$("#nickname").focus();

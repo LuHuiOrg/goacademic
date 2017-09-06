@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import com.lh.site.entity.ShoppingCart;
 
 public interface ShoppingCartMapper {
-	int deleteByPrimaryKey(Long id);
+	int deleteByStudentInfoId(Long studentInfoId);
 
 	int insert(ShoppingCart record);
 
@@ -18,4 +18,5 @@ public interface ShoppingCartMapper {
 	int updateByPrimaryKey(ShoppingCart record);
 
 	ShoppingCart getShoppingCartByIds(@Param("courseId") Long courseId,@Param("studentInfoId") Long studentInfoId);
+	
 }

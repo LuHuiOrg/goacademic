@@ -24,9 +24,9 @@
        and course_id = #{courseId, jdbcType=BIGINT}
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByStudentInfoId" parameterType="java.lang.Long" >
     delete from t_shopping_cart
-    where id = #{id,jdbcType=BIGINT}
+    where student_info_id = #{studentInfoId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lh.site.entity.ShoppingCart" >
     insert into t_shopping_cart (id, student_info_id, course_id, 

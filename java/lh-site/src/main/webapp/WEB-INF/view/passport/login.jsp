@@ -41,31 +41,18 @@
 					    <label><input type="checkbox">记住密码</label>
 					    <a class="pull-right" href="javascript:void(0);">忘记密码</a>
 					  </div>
-					  <button type="button" onclick="javascript:validate();" class="btn btn-default btn-lg btn-block">登录</button>
+					  <button type="button" onclick="javascript:passport.login.login();" class="btn btn-default btn-lg btn-block">登录</button>
 					</form>
 			    </div>
 			</div>
 		</div>
 	</div>
 	<%@ include file="../common/bottom.jsp" %>
-	<script type="text/javascript" src="${ctx}/static/plugin/jquery/3.1.0/jquery.min.js"></script>
+	<script src="${ctx }/static/js/passport.js"></script>
 	<script type="text/javascript">
-	function validate() {
-		var nickname = $("#nickname").val();
-		var password = $("#password").val();
-
-		if (nickname == null || nickname == "") {
-			alert("昵称不能为空");
-			return;
-		}
-		if (password == null || password == "") {
-			alert("密码不能为空");
-			return;
-		}
-		
-		$("#fm").submit();
-	
-	}
+	$(function(){
+		passport.login.init({});
+	});
 	if ('${errorMsg}' != '') {
 		alert('${errorMsg}');
 	}

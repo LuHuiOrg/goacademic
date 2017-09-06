@@ -1,5 +1,6 @@
 package com.lh.site.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,18 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping(value = "order")
-	public String order(){
+	public String order(ModelMap model){
+		StudentInfo studentInfo = (StudentInfo) ServletUtils.getSessionAttribute(Constant.STUDENTINFO);
+		model.put("listCourse", shoppingCartService.listCourseByShoppingCart(studentInfo.getId()));
 		return "shop/order";
 	}
 	
 	@RequestMapping(value = "payment")
-	public String payment(){
+	public String payment(ModelMap model){
+		StudentInfo studentInfo = (StudentInfo) ServletUtils.getSessionAttribute(Constant.STUDENTINFO);
+		List<Course> listCourse = shoppingCartService.listCourseByShoppingCart(studentInfo.getId());
+		model.put("listCourse", listCourse);
+		shoppingCartService.createOrderByShoppingCart(studentInfo.getId(),listCourse);
 		return "shop/payment";
 	}
 }
