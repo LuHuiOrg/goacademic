@@ -54,10 +54,10 @@
 		passport.login.init({});
 	});
 	if ('${errorMsg}' != '') {
-		alert('${errorMsg}');
+		layer.alert('${errorMsg}', {icon: 6});
 	}
 	if ('${message}' != '') {
-		alert('${message}');
+		layer.alert('${message}', {icon: 6});
 	}
 	</script>
 </body>

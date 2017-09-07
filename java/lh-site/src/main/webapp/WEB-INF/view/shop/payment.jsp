@@ -21,7 +21,7 @@
 	</div>
 	<div class="container order">			
 		<table class="table">
-			<thead><tr> <th>订单：GDH236342874832</th> <th></th> <th></th>   </tr> </thead>
+			<thead><tr> <th>订单号：${orderCode }</th> <th></th> <th></th>   </tr> </thead>
 			<tbody>
 				<c:set var="amount" value="0"></c:set>
 				<c:forEach var="course" items="${listCourse }">
@@ -33,7 +33,7 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3" class="col-md-12"><h3 class="col-md-2">支付方式:</h3><img width="100" src="${ctx}/static/img/pay-ali.png" class="col-md-3"><img width="100" src="${ctx}/static/img/pay-wechat.png" class="col-md-3"></td>
+					<td colspan="3" class="col-md-12"><h3 class="col-md-2">支付方式:</h3><img width="100" src="${ctx}/static/img/pay-ali.png" class="col-md-3"></td>
 				</tr>
 			</tbody>
 		</table>

@@ -92,11 +92,11 @@
 	<script src="${ctx }/static/js/passport.js"></script>
 	<script type="text/javascript">
 	if ('${errorMsg}' != '') {
-		alert('${errorMsg}');
+		layer.alert('${errorMsg}', {icon: 6});
 		$("#nickname").focus();
 	}
 	if ('${message}' != '') {
-		alert('${message}');
+		layer.alert('${message}', {icon: 6});
 	}
 	</script>
 </body>

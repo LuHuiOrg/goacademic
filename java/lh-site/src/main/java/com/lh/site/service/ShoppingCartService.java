@@ -64,28 +64,34 @@ public class ShoppingCartService {
 	}
 	
 	@Transactional(readOnly = false)
-	public void createOrderByShoppingCart(Long studentInfoId,List<Course> courseList){
-		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
-		BigDecimal orderAmount = BigDecimal.ZERO;
-		String orderCode = DateUtils.getOrderNum();
-		for (Course course : courseList) {
-			orderAmount = orderAmount.add(course.getPrice());
-			OrderItem orderItem = new OrderItem();
-			orderItem.setCourseId(course.getId());
-			orderItem.setOrderCode(orderCode);
-			orderItemList.add(orderItem);
+	public String createOrderByShoppingCart(Long studentInfoId,List<Course> courseList){
+		//判断购物车中是否有商品
+		if(courseList.size() > 0){
+			List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+			BigDecimal orderAmount = BigDecimal.ZERO;
+			String orderCode = DateUtils.getOrderNum();
+			for (Course course : courseList) {
+				orderAmount = orderAmount.add(course.getPrice());
+				OrderItem orderItem = new OrderItem();
+				orderItem.setCourseId(course.getId());
+				orderItem.setOrderCode(orderCode);
+				orderItemList.add(orderItem);
+			}
+			Order order = new Order();
+			order.setOrderCode(orderCode);
+			order.setStudentInfoId(studentInfoId);
+			order.setOrderAmount(orderAmount);
+			order.setPayType(0);
+			order.setPayStatus(0);
+			order.setCreateTime(new Date());
+			order.setRemarks("来自网页订单");
+			orderMapper.insert(order);
+			orderItemMapper.insertByBatch(orderItemList);
+			shoppingCartMapper.deleteByStudentInfoId(studentInfoId);
+			return orderCode;
+		}else{
+			return null;
 		}
-		Order order = new Order();
-		order.setOrderCode(orderCode);
-		order.setStudentInfoId(studentInfoId);
-		order.setOrderAmount(orderAmount);
-		order.setPayType(0);
-		order.setPayStatus(0);
-		order.setCreateTime(new Date());
-		order.setRemarks("来自网页订单");
-		orderMapper.insert(order);
-		orderItemMapper.insertByBatch(orderItemList);
-		shoppingCartMapper.deleteByStudentInfoId(studentInfoId);
 	}
 	
 }

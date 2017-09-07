@@ -15,6 +15,13 @@
     from t_mac
     where id = #{id,jdbcType=BIGINT}
   </select>
+  
+  <select id="listmacByStudentInfoId" resultType="java.lang.String" parameterType="java.lang.Long" >
+  	select mac
+    from t_mac
+    where student_id = #{studentInfoId,jdbcType=BIGINT}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_mac
     where id = #{id,jdbcType=BIGINT}

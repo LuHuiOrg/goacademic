@@ -58,7 +58,7 @@ public class ShoppingCartController {
 		StudentInfo studentInfo = (StudentInfo) ServletUtils.getSessionAttribute(Constant.STUDENTINFO);
 		List<Course> listCourse = shoppingCartService.listCourseByShoppingCart(studentInfo.getId());
 		model.put("listCourse", listCourse);
-		shoppingCartService.createOrderByShoppingCart(studentInfo.getId(),listCourse);
+		model.put("orderCode",shoppingCartService.createOrderByShoppingCart(studentInfo.getId(),listCourse));
 		return "shop/payment";
 	}
 }

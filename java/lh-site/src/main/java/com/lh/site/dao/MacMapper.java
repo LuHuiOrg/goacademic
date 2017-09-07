@@ -1,5 +1,7 @@
 package com.lh.site.dao;
 
+import java.util.List;
+
 import com.lh.site.entity.Mac;
 
 public interface MacMapper {
@@ -14,4 +16,6 @@ public interface MacMapper {
     int updateByPrimaryKeySelective(Mac record);
 
     int updateByPrimaryKey(Mac record);
+    
+    List<String> listmacByStudentInfoId(Long studentInfoId);
 }

@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : localDatabase
 Source Server Version : 50715
 Source Host           : 127.0.0.1:3306
 Source Database       : lh_web_test
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-09-06 17:45:25
+Date: 2017-09-07 09:43:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -103,11 +103,17 @@ CREATE TABLE `t_mac` (
   `mac` varchar(30) NOT NULL COMMENT 'mac地址',
   `student_id` bigint(20) NOT NULL COMMENT 't_student表的id（该mac地址所属的学生）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生mac地址表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生mac地址表';
 
 -- ----------------------------
 -- Records of t_mac
 -- ----------------------------
+INSERT INTO `t_mac` VALUES ('1', '00-50-56-e4-a2-c2', '1');
+INSERT INTO `t_mac` VALUES ('2', '00-50-56-e4-a2-c3', '1');
+INSERT INTO `t_mac` VALUES ('3', '00-50-56-e4-a2-c4', '1');
+INSERT INTO `t_mac` VALUES ('4', '00-50-56-e4-a2-c5', '1');
+INSERT INTO `t_mac` VALUES ('5', '00-50-56-e4-a2-c6', '1');
+INSERT INTO `t_mac` VALUES ('6', '00-50-56-e4-a2-c0', '2');
 
 -- ----------------------------
 -- Table structure for t_order
@@ -165,7 +171,7 @@ CREATE TABLE `t_shopping_cart` (
   `course_id` bigint(20) NOT NULL COMMENT '课程id',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='购物车表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='购物车表';
 
 -- ----------------------------
 -- Records of t_shopping_cart
@@ -183,9 +189,10 @@ CREATE TABLE `t_student_info` (
   `email` varchar(50) NOT NULL COMMENT '邮箱',
   `category_id` bigint(20) unsigned DEFAULT NULL COMMENT '学生所属分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='学生信息表';
 
 -- ----------------------------
 -- Records of t_student_info
 -- ----------------------------
 INSERT INTO `t_student_info` VALUES ('1', '自掘坟墓', '123456', '13776060074', '2362651588@qq.com', null);
+INSERT INTO `t_student_info` VALUES ('2', 'qwer', '123456', '13776060074', '2362651588@qq.com', null);

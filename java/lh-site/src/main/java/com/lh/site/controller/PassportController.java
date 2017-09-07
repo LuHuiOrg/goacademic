@@ -1,7 +1,8 @@
 package com.lh.site.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lh.site.constant.Constant;
 import com.lh.site.entity.StudentInfo;
 import com.lh.site.service.StudentsService;
+import com.lh.site.utils.ResultUtils;
 import com.lh.site.utils.ServletUtils;
 
 @Controller
@@ -39,19 +41,18 @@ public class PassportController{
 	}
 	//用户注册
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String register(StudentInfo studentInfo,HttpSession session){
+	public String register(StudentInfo studentInfo){
 		studentsService.addStudents(studentInfo);
-		ServletUtils.setSessionAttribute(Constant.STUDENTINFO, studentInfo);
-		return "index";
+		return "passport/login";
 	}
 	//用户登录
 	@RequestMapping(value="login", method = RequestMethod.POST)
 	public String login(StudentInfo studentInfo,ModelMap model){
-		StudentInfo student = studentsService.login(studentInfo);
-		if(student != null){
-			ServletUtils.setSessionAttribute(Constant.STUDENTINFO, student);
+		Map<String,Object> resultMap = studentsService.login(studentInfo);
+		if(ResultUtils.getFlag(resultMap)){
+			ServletUtils.setSessionAttribute(Constant.STUDENTINFO, (StudentInfo)ResultUtils.getData(resultMap));
 		}else{
-			model.put("errorMsg", "用户名或密码不正确！");
+			model.put("errorMsg", ResultUtils.getMsg(resultMap));
 			return "passport/login";
 		}
 		return "redirect:/";

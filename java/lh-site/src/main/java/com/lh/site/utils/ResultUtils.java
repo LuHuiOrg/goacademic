@@ -48,4 +48,50 @@ public class ResultUtils {
 		resultMap.put(DATA, data);
 		return resultMap;
 	}
+	
+	/**
+	 * 
+	 * 获取flag标识
+	 *
+	 * @param resultMap
+	 * @return flag为boolean
+	 */
+	public static Boolean getFlag(Map<String, Object> resultMap) {
+		Object flagObj = resultMap.get(FLAG);
+		if (flagObj != null && flagObj instanceof Boolean) {
+			return (Boolean) flagObj;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 获取msg
+	 *
+	 * @param resultMap
+	 * @return
+	 */
+	public static String getMsg(Map<String, Object> resultMap) {
+		Object msgObj = resultMap.get(MSG);
+		if (msgObj != null && msgObj instanceof String) {
+			return (String) msgObj;
+		} else {
+			return "";
+		}
+	}
+	
+	/**
+	 * 获取data
+	 *
+	 * @param resultMap
+	 * @return
+	 */
+	public static Object getData(Map<String, Object> resultMap) {
+		Object msgObj = resultMap.get(DATA);
+		if (msgObj != null) {
+			return msgObj;
+		} else {
+			return null;
+		}
+	}
 }
