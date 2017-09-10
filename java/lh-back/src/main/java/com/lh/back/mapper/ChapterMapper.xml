@@ -112,19 +112,19 @@
     <where>
     	<trim prefix=" 1 = 1 ">
 		   <if test="record.id != null" >
-	        #{record.id,jdbcType=BIGINT},
+	        and id = #{record.id,jdbcType=BIGINT}
 	      </if>
 	      <if test="record.courseId != null" >
-	        #{record.courseId,jdbcType=BIGINT},
+	        and course_id = #{record.courseId,jdbcType=BIGINT}
 	      </if>
 	      <if test="record.name != null" >
-	        #{record.name,jdbcType=VARCHAR},
+	       and name = #{record.name,jdbcType=VARCHAR}
 	      </if>
 	      <if test="record.url != null" >
-	        #{record.url,jdbcType=VARCHAR},
+	        and url = #{record.url,jdbcType=VARCHAR}
 	      </if>
 	      <if test="record.parentId != null" >
-	        #{record.parentId,jdbcType=BIGINT},
+	        and parent_id = #{record.parentId,jdbcType=BIGINT}
 	      </if>
 		</trim>
     </where>

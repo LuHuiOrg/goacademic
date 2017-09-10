@@ -65,14 +65,14 @@
                     <td><input type="text" id="name" name="name" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
                 </tr>
                 <tr>
-                    <td>所属课程:</td>
+                    <td>所属章节:</td>
                     <td>
                     <select class="easyui-combotree" url="${ctx}/chapter/getSelectData" name="chaptername" style="width:156px;"/>
 						<!--  <select style="margin-bottom: 20px; margin-right: 20px; width: 200px; height: 32px;" class="easyui-combotree" id="sChapter" name="chaptername" />  -->
 &nbsp;<font color="red">*</font></td>
-                	<td>所属章节:</td>
+                <!-- 	<td>所属章节:</td>
                     <td><input type="text" id="price" name="price" style="width: 180px" class="easyui-validatebox" data-options="required:true,validType:'intOrFloat'" />&nbsp;<font color="red">*</font></td>
-                
+                 -->
                 </tr>
                 <tr>
                     <td>上传视频:</td>
