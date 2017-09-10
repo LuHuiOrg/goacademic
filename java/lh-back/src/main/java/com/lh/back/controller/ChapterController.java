@@ -1,10 +1,12 @@
 package com.lh.back.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
@@ -16,6 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageInfo;
+import com.lh.back.UtilPojo.ComboTreeModel;
 import com.lh.back.UtilPojo.PageBean;
 import com.lh.back.entity.Chapter;
 import com.lh.back.entity.pojo.ChapterPojo;
@@ -36,7 +42,7 @@ public class ChapterController {
 		return "chapter/list";
 	}
 	
-/*	@RequestMapping(value = "list",method = RequestMethod.POST)
+	@RequestMapping(value = "list",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> list(Chapter chapter,Integer page,Integer rows){
 		Map<String,Object> resutlMap = new HashMap<String,Object>();
@@ -46,10 +52,12 @@ public class ChapterController {
 		resutlMap.put("total", pageInfo.getTotal());
 		resutlMap.put("firstPage", pageInfo.getFirstPage());
 		return resutlMap;
-	}*/
-	  @RequestMapping("/list")
-	    public String list(@RequestParam(value="page", required=false) String page, 
-	            @RequestParam(value="rows", required=false) String rows, Chapter chapter, HttpServletResponse response)
+	}
+	
+	  /*
+	  @RequestMapping("/singleList")
+	    public String singleList(@RequestParam(value="page", required=false) String page, 
+	            @RequestParam(value="rows", required=false) String rows,@RequestParam(value="courseId", required=false)Long courseId, Chapter chapter, HttpServletResponse response)
 	            throws Exception {
 	    	
 	    	PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
@@ -60,7 +68,7 @@ public class ChapterController {
 	            map.put("name", "%" + chapter.getName() + "%");
 	            
 	        }
-	        
+	        map.put("courseId", courseId);
 	        map.put("firstPage", pageBean.getFirstPage());
 	        map.put("rows", pageBean.getRows());
 	        
@@ -80,8 +88,21 @@ public class ChapterController {
 	        return null;
 	    }
 	
-	
-	
-	
-	
+	*/ 
+	/**
+	 * 通过课程ID获取所属章节信息
+	 * @param courseId
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/getSelectData")  
+	@ResponseBody  
+	public List<ComboTreeModel> getTreeData(Long courseId,HttpServletRequest request, HttpServletResponse response){  
+	    List<ComboTreeModel> list = new ArrayList<ComboTreeModel>(); 
+	    Chapter chapter = new Chapter();
+	    chapter.setCourseId(1L);
+	    list = chapterService.getTreeData(chapter);
+	    return list;  
+	}
 }

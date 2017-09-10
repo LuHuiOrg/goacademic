@@ -65,11 +65,17 @@
                     <td><input type="text" id="name" name="name" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
                 </tr>
                 <tr>
-                    <td>所属课程:</td>
+          <%--           <td>所属课程:</td>
                     <td>
-                    <select class="easyui-combotree" url="${ctx}/chapter/getSelectData" name="chaptername" style="width:156px;"/>
-						<!--  <select style="margin-bottom: 20px; margin-right: 20px; width: 200px; height: 32px;" class="easyui-combotree" id="sChapter" name="chaptername" />  -->
-&nbsp;<font color="red">*</font></td>
+						<select class="easyui-combobox" id="courseBelong" name="courseBelong"
+						data-options="url:'${ctx}/course/getCourseCombobox',  
+                                           method:'post',  
+                                           valueField:'id',  
+                                           textField:'name', 
+                                           editable:false, 
+                                           panelHeight:'auto'"
+						style="width: 220px"></select>
+&nbsp;<font color="red">*</font></td> --%>
                 	<td>所属章节:</td>
                     <td><input type="text" id="price" name="price" style="width: 180px" class="easyui-validatebox" data-options="required:true,validType:'intOrFloat'" />&nbsp;<font color="red">*</font></td>
                 
@@ -115,8 +121,8 @@
     /* 根据条件查询公告 */
     function searchChapter() {
         $("#dg").datagrid('load', {
-            "name" : $("#c_name").val(),
-            "courseId" : $("#c_courseName").val(),
+            /* "name" : $("#c_name").val(),
+            "courseId" : $("#c_courseName").val(), */
         });
     }
     /* 删除公告，可以是多个 */

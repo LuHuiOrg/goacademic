@@ -105,26 +105,26 @@
    </foreach>
   </delete>
   <!-- 章节列表 -->
-   <select id="listChapter" resultMap="BaseResultMap" parameterType="com.lh.back.entity.Chapter">
+   <select id="listChapter" resultMap="BaseResultMap" >
   	select 
     <include refid="Base_Column_List" />
     from t_chapter
     <where>
     	<trim prefix=" 1 = 1 ">
-		   <if test="id != null" >
-	        #{id,jdbcType=BIGINT},
+		   <if test="record.id != null" >
+	        #{record.id,jdbcType=BIGINT},
 	      </if>
-	      <if test="courseId != null" >
-	        #{courseId,jdbcType=BIGINT},
+	      <if test="record.courseId != null" >
+	        #{record.courseId,jdbcType=BIGINT},
 	      </if>
-	      <if test="name != null" >
-	        #{name,jdbcType=VARCHAR},
+	      <if test="record.name != null" >
+	        #{record.name,jdbcType=VARCHAR},
 	      </if>
-	      <if test="url != null" >
-	        #{url,jdbcType=VARCHAR},
+	      <if test="record.url != null" >
+	        #{record.url,jdbcType=VARCHAR},
 	      </if>
-	      <if test="parentId != null" >
-	        #{parentId,jdbcType=BIGINT},
+	      <if test="record.parentId != null" >
+	        #{record.parentId,jdbcType=BIGINT},
 	      </if>
 		</trim>
     </where>

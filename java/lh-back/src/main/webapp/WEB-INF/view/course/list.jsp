@@ -22,6 +22,7 @@
 				<th field="price" width="80" align="center">课程价格</th>
 				<th data-options="field:'cover',width:80,align:'center',formatter:imgFormatter">课程封面</th>
 				<th field="description" width="80" align="center">课程详情</th>
+				 <th field="content" width="200" align="center"   formatter="formatHref">操作</th>
             </tr>
         </thead>
     </table>
@@ -95,6 +96,17 @@
 				$("#dlg").dialog("open").dialog("setTitle", "添加新课程");
 		        course.url = "${ctx}/course/save";
 			},
+			/* 管理课程下章节信息 */
+			addChapterTab:function(url, text, iconCls){
+				var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
+	                + url + "'></iframe>";
+		        $("#tabs").tabs("add", {
+		            title : text,
+		            iconCls : iconCls,
+		            closable : true,
+		            content : content
+		        });
+			},
 			/* 保存部门，根据不同的 url 选择是添加还是修改 */
 			saveDept:function(){
 				$("#fm").form("submit", {
@@ -165,6 +177,27 @@
 	          }     
 	        return  rvalue;          
 	       }
+		//操作
+	    function formatHref(val, row) {
+			var link='';
+	    	if(row.parent_id == 0){
+	    	return "";	
+	    	}else{
+	    		/* link = "<a href='javascript:course.addChapterTab('管理"+row.name+"章节','${ctx}/chapter/singleList?id="+row.id+",'icon-lxr')' target='_blank'>管理章节</a>"; 
+	    		 
+	    		return link; */
+	    		return "<a href='javascript:manageChapter("+ row.id + ")' target='_blank'>管理章节</a>";
+	    	}
+	        
+	    }
+		
+		function manageChapter(id){
+			    $.post('${ctx}/chapter/list?courseId='+id, 
+			    function(cdata) {
+			        console.log('ok', cdata)
+			    })
+			}
+		
 	</script>
 </body>
 </html>
