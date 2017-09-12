@@ -45,7 +45,6 @@
         <div class="easyui-accordion">
             <div title="课程维护" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
             	<a href="javascript:home.openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
-            	<a href="javascript:home.openTab('章节管理','${ctx }/chapter/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">章节管理</a>
             </div>
             <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
                 <a href="javascript:home.openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
@@ -56,8 +55,7 @@
             </div>
         </div>
     </div>
-	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
-	<script type="text/javascript" src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+	<%@ include file="common/bottom.jsp" %>
 	<script type="text/javascript">
 		var home = {
 			addTab:function(url, text, iconCls){

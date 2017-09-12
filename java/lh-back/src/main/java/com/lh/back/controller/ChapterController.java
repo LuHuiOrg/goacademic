@@ -1,108 +1,69 @@
 package com.lh.back.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.github.pagehelper.PageInfo;
-import com.lh.back.UtilPojo.ComboTreeModel;
-import com.lh.back.UtilPojo.PageBean;
 import com.lh.back.entity.Chapter;
-import com.lh.back.entity.pojo.ChapterPojo;
+import com.lh.back.entity.Course;
 import com.lh.back.service.ChapterService;
-import com.lh.back.utils.JsonDateValueProcessor;
-import com.lh.back.utils.ResponseUtil;
+import com.lh.back.service.CourseService;
+import com.lh.back.utils.ConfigUtils;
+import com.lh.back.utils.ResultUtils;
+import com.lh.back.utils.SftpUtils;
 
 @Controller
 @RequestMapping(value = "chapter")
 public class ChapterController {
 
+	@Autowired
+	private CourseService courseService;
 	
 	@Autowired
 	private ChapterService chapterService;
 	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
-	public String chapter(){
-		return "chapter/list";
+	public String chapter(Long courseId,ModelMap model){
+		Course course = new Course();
+		course.setId(courseId);
+		model.put("course", chapterService.showCourseAndChapter(course));
+		return "course/chapter";
 	}
 	
 	@RequestMapping(value = "list",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> list(Chapter chapter,Integer page,Integer rows){
 		Map<String,Object> resutlMap = new HashMap<String,Object>();
-		PageInfo<ChapterPojo> pageInfo = chapterService.pageChapter(chapter,page,rows);
-		System.out.println(pageInfo.getList().size());
-		resutlMap.put("rows", pageInfo.getList());
-		resutlMap.put("total", pageInfo.getTotal());
-		resutlMap.put("firstPage", pageInfo.getFirstPage());
+		resutlMap.put("rows", chapterService.listChapter(chapter));
 		return resutlMap;
 	}
 	
-	  /*
-	  @RequestMapping("/singleList")
-	    public String singleList(@RequestParam(value="page", required=false) String page, 
-	            @RequestParam(value="rows", required=false) String rows,@RequestParam(value="courseId", required=false)Long courseId, Chapter chapter, HttpServletResponse response)
-	            throws Exception {
-	    	
-	    	PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
-	    	
-	        Map<String, Object> map = new HashMap<String, Object>();
-	        // 判断查询条件是否为空，如果是，对条件做数据库模糊查询的处理
-	        if (chapter.getName() != null && !"".equals(chapter.getName().trim())) {
-	            map.put("name", "%" + chapter.getName() + "%");
-	            
-	        }
-	        map.put("courseId", courseId);
-	        map.put("firstPage", pageBean.getFirstPage());
-	        map.put("rows", pageBean.getRows());
-	        
-	        List<ChapterPojo> chapterPojoList = chapterService.findChapterPojos(map);
-	        Integer total = chapterService.getCount(map);
-
-	        // 处理日期使之能在 easyUI 的 datagrid 中正常显示
-	        JsonConfig jsonConfig = new JsonConfig();
-	        jsonConfig.registerJsonValueProcessor(Date.class,
-	                new JsonDateValueProcessor());
-	        // 将数据以 JSON 格式返回前端
-	        JSONObject result = new JSONObject();
-	        JSONArray jsonArray = JSONArray.fromObject(chapterPojoList, jsonConfig);
-	        result.put("rows", jsonArray);
-	        result.put("total", total);
-	        ResponseUtil.write(response, result);
-	        return null;
-	    }
-	
-	*/ 
-	/**
-	 * 通过课程ID获取所属章节信息
-	 * @param courseId
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value="/getSelectData")  
-	@ResponseBody  
-	public List<ComboTreeModel> getTreeData(Long courseId,HttpServletRequest request, HttpServletResponse response){  
-	    List<ComboTreeModel> list = new ArrayList<ComboTreeModel>(); 
-	    Chapter chapter = new Chapter();
-	    chapter.setCourseId(1L);
-	    list = chapterService.getTreeData(chapter);
-	    return list;  
+	@RequestMapping(value = "save",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> save(Chapter chapter,@RequestParam("chapterVideo") CommonsMultipartFile chapterVideo){
+		try{
+			if(chapterVideo != null && !chapterVideo.isEmpty()){
+				String fileName = SftpUtils.getNewFilename(chapterVideo.getOriginalFilename());
+				String uploadChapterVideo = ConfigUtils.getConfig("img.cover.path") + fileName;
+				String deleteFullFilename = chapter.getUrl();
+				chapter.setUrl(ConfigUtils.getConfig("img.domain").toString()+ConfigUtils.getConfig("img.cover.web.path").toString()+fileName);
+				SftpUtils.uploadSFtp(uploadChapterVideo, chapterVideo.getInputStream(), deleteFullFilename);// 上传最新图片
+			}
+			if(!chapterService.saveAndEditCourse(chapter)){
+				return ResultUtils.buildFlagAndMsgMap(false, "保存数据失败");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResultUtils.buildFlagAndMsgMap(true, "");
 	}
+
 }

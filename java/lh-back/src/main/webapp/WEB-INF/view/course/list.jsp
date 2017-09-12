@@ -9,8 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
 <title>课程维护页面</title>
-<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/plugin/jquery-easyui-1.3.3/themes/icon.css">
+<%@ include file="../common/top.jsp" %>
 </head>
 <body style="margin: 1px;">
     <table id="dg" title="课程维护" class="easyui-datagrid" fitColumns="true" pagination="true" rownumbers="true" url="${ctx}/course/list" fit="true" toolbar="#tb">
@@ -22,7 +21,7 @@
 				<th field="price" width="80" align="center">课程价格</th>
 				<th data-options="field:'cover',width:80,align:'center',formatter:imgFormatter">课程封面</th>
 				<th field="description" width="80" align="center">课程详情</th>
-				 <th field="content" width="200" align="center"   formatter="formatHref">操作</th>
+				<th field="content" width="200" align="center"   formatter="formatHref">操作</th>
             </tr>
         </thead>
     </table>
@@ -55,7 +54,6 @@
 	                    <input id="coverFile" name="coverFile" type="file" onchange="common.change('coverImg','coverFile');" required="true"/>&nbsp;<font color="red">*</font> 
 	                    <input id="cover" type="text" name="cover" style="width: 0px; height: 0px; border: 0px; visibility: hidden;" />
 	                    <img id="coverImg" border="0" src="${ctx }/static/img/no-img.jpg" style="width:80%;display:table;border: 1px solid;height:80px;width: 80px;">
-	                    
                     </td>
                 </tr>
                 <tr>
@@ -70,134 +68,7 @@
         <a href="javascript:course.saveDept()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
         <a href="javascript:course.closeDeptDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
     </div>
-	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.min.js"></script>
-	<script src="${ctx}/static/plugin/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-	<script src="${ctx }/static/javascript/common.js"></script>
-	<script>
-		var course = {
-			url:"",
-			/* 根据条件查询部门 */	
-			searchDept:function(){
-				$("#dg").datagrid('load', {
-		            "name" : $("#s_name").val()
-		        });
-			},
-			resetValue:function(){
-				$("#dlg").dialog("close");
-		        $("#name").val("");
-		        $("#cover").val("");
-		        $("#price").val("");
-		        $("#description").val("");
-		        var file = $("#coverFile");
-		        file.after(file.clone().val(''));
-		        file.remove();
-			},
-			openDeptAddDialog:function(){
-				$("#dlg").dialog("open").dialog("setTitle", "添加新课程");
-		        course.url = "${ctx}/course/save";
-			},
-			/* 管理课程下章节信息 */
-			addChapterTab:function(url, text, iconCls){
-				var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
-	                + url + "'></iframe>";
-		        $("#tabs").tabs("add", {
-		            title : text,
-		            iconCls : iconCls,
-		            closable : true,
-		            content : content
-		        });
-			},
-			/* 保存部门，根据不同的 url 选择是添加还是修改 */
-			saveDept:function(){
-				$("#fm").form("submit", {
-		            url : course.url,
-		            onSubmit : function() {
-		                return $(this).form("validate");
-		            },
-		            success : function(data) {
-		            	eval("var result = " + data);
-		            	if(result.flag){
-		            		$.messager.alert("系统提示", "保存成功！");
-			                course.resetValue();
-			                $("#dlg").dialog("close");
-			                $("#dg").datagrid("reload");
-		            	}
-		            }
-		        });
-			},
-			openDeptModifyDialog:function(){
-				var selectedRows = $("#dg").datagrid('getSelections');
-		        if (selectedRows.length != 1) {
-		            $.messager.alert("系统提示", "请选择要编辑的数据 ！");
-		            return;
-		        }
-		        var row = selectedRows[0];
-		        $("#dlg").dialog("open").dialog("setTitle","修改课程信息");
-		        $("#coverImg").attr('src',row["cover"]); 
-		        $('#fm').form('load', row);
-		        course.url = "${ctx}/course/save?id=" + row.id;
-			},
-			closeDeptDialog:function(){
-				course.resetValue();
-			},
-			/* 删除课程，可以是多个 */
-			deleteDept:function(){
-				var selectedRows = $("#dg").datagrid('getSelections');
-		        if (selectedRows.length == 0) {
-		            $.messager.alert("系统提示", "请选择要删除的数据!");
-		            return;
-		        }
-		        var strIds = [];
-		        for ( var i = 0; i < selectedRows.length; i++) {
-		            strIds.push(selectedRows[i].id);
-		        }
-		        $.messager.confirm("系统提示","您确定要删除这些数据 <font color=red>"+ selectedRows.length + "</font> data?",function(r) {
-		        	if (r) {
-		           		$.post("${ctx}/course/delete",{"ids" : JSON.stringify(strIds)},function(data) {
-			                if (data.flag) {
-			                    $.messager.alert("系统提示","删除成功!");
-			                    $("#dg").datagrid("reload");
-			                } else {
-			                    $.messager.alert("系统提示","删除失败，没有找到这个课程!");
-			                }
-		                }, "json");
-		            }
-		       });
-			}
-		}
-		  //将url转换成图片    
-	    function imgFormatter(value,row,index){  
-			var rvalue ='';
-	        if('' != value && null != value){    
-				if(value.indexOf('http')>-1){
-					 rvalue = "<img  style='width:66px; height:60px;margin-left:3px;' src='"+ value+" ' title='点击查看图片'/>";
-				}else{
-					rvalue = "<img  style='width:66px; height:60px;margin-left:3px;' src='${ctx}"+ +value+" ' title='点击查看图片'/>";
-				}
-	          }     
-	        return  rvalue;          
-	       }
-		//操作
-	    function formatHref(val, row) {
-			var link='';
-	    	if(row.parent_id == 0){
-	    	return "";	
-	    	}else{
-	    		/* link = "<a href='javascript:course.addChapterTab('管理"+row.name+"章节','${ctx}/chapter/singleList?id="+row.id+",'icon-lxr')' target='_blank'>管理章节</a>"; 
-	    		 
-	    		return link; */
-	    		return "<a href='javascript:manageChapter("+ row.id + ")' target='_blank'>管理章节</a>";
-	    	}
-	        
-	    }
-		
-		function manageChapter(id){
-			    $.post('${ctx}/chapter/list?courseId='+id, 
-			    function(cdata) {
-			        console.log('ok', cdata)
-			    })
-			}
-		
-	</script>
+	<%@ include file="../common/bottom.jsp" %>
+	<script src="${ctx }/static/javascript/course.js"></script>
 </body>
 </html>

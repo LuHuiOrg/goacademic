@@ -10,7 +10,7 @@ public interface CourseMapper {
 
     int insertSelective(Course record);
 
-    Course selectByPrimaryKey(Long id);
+    Course getCourseByCourse(Course course);
 
     int updateByPrimaryKeySelective(Course record);
 

@@ -17,6 +17,16 @@
     from t_chapter
     where id = #{id,jdbcType=BIGINT}
   </select>
+  
+  <select id="listBigChapter" parameterType="java.lang.Long">
+  	SELECT 
+  		<include refid="Base_Column_List" />
+  	FROM `t_chapter`
+	WHERE
+		course_id = #{courseId,jdbcType=BIGINT}
+		AND parent_id !=0
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_chapter
     where id = #{id,jdbcType=BIGINT}
@@ -91,8 +101,8 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   
- 	<!-- 批量删除章节 -->
-    <delete id="deleteChapterByBatch" parameterType="java.util.ArrayList">
+  <!-- 批量删除章节 -->
+  <delete id="deleteChapterByBatch" parameterType="java.util.ArrayList">
   	delete from t_chapter where id in
    	<foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
        #{item,jdbcType=BIGINT}
@@ -130,28 +140,5 @@
     </where>
   </select>
   
-  
-      <!-- 根据条件查询公告 -->
-    <select id="findChapters" parameterType="Map" resultMap="BaseResultMap">
-       	select 
-    <include refid="Base_Column_List" />
-    from t_chapter 
-  <where>
-        <if test="name!=null and name!='' ">
-             name like #{name}
-        </if>
-  </where>
-          limit 
-                     #{firstPage}, 
-                     #{rows}; 
-    </select>
-    <!-- 根据条件查询公告数量 -->
-    <select id="getCount" parameterType="Map" resultType="Integer">
-        select count(*) from t_chapter
-        <where>
-            <if test="name!=null and name!='' ">
-                name like #{name}
-            </if>
-        </where>
-    </select>
+
 </mapper>

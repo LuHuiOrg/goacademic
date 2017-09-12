@@ -12,11 +12,32 @@
   <sql id="Base_Column_List" >
     id, name, description, cover, price, category_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="getCourseByCourse" resultMap="BaseResultMap" parameterType="com.lh.back.entity.Course" >
     select 
     <include refid="Base_Column_List" />
     from t_course
-    where id = #{id,jdbcType=BIGINT}
+    <where>
+    	<trim prefix=" 1 = 1 ">
+		   <if test="id != null" >
+		     and id = #{id,jdbcType=BIGINT}
+		    </if>
+		    <if test="name != null and name != ''" >
+		      and name = #{name,jdbcType=VARCHAR}
+		    </if>
+	        <if test="description != null and description != ''" >
+		      and description= #{description,jdbcType=VARCHAR}
+		    </if>
+	        <if test="cover != null and cover != ''" >
+		      and cover = #{cover,jdbcType=VARCHAR}
+		    </if>
+		    <if test="price != null and price != ''" >
+		      and price = #{price,jdbcType=DECIMAL}
+		    </if>
+		    <if test="categoryId != null">
+		      and category_id = #{categoryId,jdbcType=BIGINT}
+		    </if>
+		</trim>
+    </where>
   </select>
   
   <select id="listCourse" resultMap="BaseResultMap">
@@ -40,7 +61,7 @@
 				      and name = #{record.name,jdbcType=VARCHAR}
 				    </if>
 			        <if test="record.description != null and record.description != ''" >
-				      and description= #{record.description,record.jdbcType=VARCHAR}
+				      and description= #{record.description,jdbcType=VARCHAR}
 				    </if>
 			        <if test="record.cover != null and record.cover != ''" >
 				      and cover = #{record.cover,jdbcType=VARCHAR}
