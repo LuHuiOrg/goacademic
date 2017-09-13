@@ -50,7 +50,7 @@
     			id in 
     			<foreach collection="courseIds" open="(" close=")" item="item" separator=",">
 			       #{item,jdbcType=BIGINT}
-			   </foreach>
+			    </foreach>
     		</when>
     		<otherwise>
     			<trim prefix=" 1 = 1 ">

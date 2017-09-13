@@ -15,57 +15,32 @@
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
-	<video class="video" preload="auto" autobuffer src="http://d.itheima.com:81/dc/前端/第一阶段：准备篇/从零到进阶前端与移动开发基础/01 认识网页.mp4" controls="controls"></video>
+	<!-- <video class="video" preload="auto" autobuffer src="http://47.92.123.48/images/cover/57edd2be-0682-4261-b093-264fc563cf0e.mp4" controls="controls"></video> -->
+	<div id="tl_player" style="width: 100%; height: 450px;"></div>
 	<div class="panel-group container" id="accordion" role="tablist" aria-multiselectable="true">
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingOne">
-	      <h4 class="panel-title">
-	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	          第一章 的撒回复
-	        </a>
-	      </h4>
-	    </div>
-	    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-	        <ul class="list-group">
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	        </ul>
-	    </div>
-	  </div>
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingTwo">
-	      <h4 class="panel-title">
-	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	          第二章 的撒回复
-	        </a>
-	      </h4>
-	    </div>
-	    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-	        <ul class="list-group">
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	        </ul>
-	    </div>
-	  </div>
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingThree">
-	      <h4 class="panel-title">
-	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-	          第三章 的撒回复
-	        </a>
-	      </h4>
-	    </div>
-	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	        <ul class="list-group">
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	          <li class="list-group-item"><a href="/lh-site/course/play"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第一节 的说法哈待会发</span></a></li>
-	        </ul>
-	    </div>
-	  </div>
+	  <c:forEach var="chapterMap" items="${chapterListMap }" varStatus="status">
+      	<div class="panel panel-default">
+      		<div class="panel-heading" role="tab" id="heading${status.index }">
+      			<h4 class="panel-title">
+		        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${status.index }" aria-expanded="false" aria-controls="collapse${status.index }">第${status.index + 1}章 ${chapterMap.parentChapter.name }</a>
+		        </h4>
+		    </div>
+		    <div id="collapse${status.index }" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading${status.index }">
+		    	<c:if test="${not empty chapterMap.childrenList }">
+		    		<ul class="list-group">
+				    	<c:forEach var="sonChapter" items="${chapterMap.childrenList }" varStatus="sonstatus">
+				      		<li class="list-group-item"><a href="${ctx}/course/play?courseId=${course.id}"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第${sonstatus.index + 1}节 ${sonChapter.name }</span></a></li>
+				      	</c:forEach>
+			      	</ul>
+		    	</c:if>
+		    </div>
+		</div>
+      </c:forEach>
 	</div>
 	<%@ include file="../common/bottom.jsp" %>
+	<script type="text/javascript" src="${ctx }/static/plugin/flowplayer/flowplayer-3.2.11.min.js"></script>
+	<script type="text/javascript">
+		flowplayer("tl_player", "${ctx}/static/plugin/flowplayer/flowplayer-3.2.12.swf", { clip: { url: "http://127.0.0.1:8087/lh-site/course/palyFlash", autoPlay: false, autoBuffering: true} });
+	</script>
 </body>
 </html>

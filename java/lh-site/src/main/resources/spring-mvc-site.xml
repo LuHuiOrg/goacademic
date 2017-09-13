@@ -22,7 +22,9 @@
     	<!-- 配置登录拦截器  -->
     	<mvc:interceptor>
     	    <mvc:mapping path="/office/**"/>
-    	    <mvc:mapping path="/shop/**"/>
+    	    <mvc:mapping path="/shop/**"/> 
+    	    <mvc:mapping path="/course/**"/>
+    	    <mvc:exclude-mapping path="/course/detail"/>
     	    <bean class="com.lh.site.intercepter.SessionInterceptor"/>
     	</mvc:interceptor>
     </mvc:interceptors> 

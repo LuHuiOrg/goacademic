@@ -1,6 +1,7 @@
 package com.lh.back.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.alibaba.fastjson.JSONArray;
 import com.lh.back.entity.Chapter;
 import com.lh.back.entity.Course;
 import com.lh.back.service.ChapterService;
-import com.lh.back.service.CourseService;
 import com.lh.back.utils.ConfigUtils;
 import com.lh.back.utils.ResultUtils;
 import com.lh.back.utils.SftpUtils;
@@ -25,16 +26,13 @@ import com.lh.back.utils.SftpUtils;
 public class ChapterController {
 
 	@Autowired
-	private CourseService courseService;
-	
-	@Autowired
 	private ChapterService chapterService;
 	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public String chapter(Long courseId,ModelMap model){
 		Course course = new Course();
 		course.setId(courseId);
-		model.put("course", chapterService.showCourseAndChapter(course));
+		model.put("resultMap", chapterService.showCourseAndChapter(course));
 		return "course/chapter";
 	}
 	
@@ -64,6 +62,17 @@ public class ChapterController {
 			e.printStackTrace();
 		}
 		return ResultUtils.buildFlagAndMsgMap(true, "");
+	}
+	
+	@RequestMapping(value = "delete",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> delete(String ids){
+		List<Long> chapterIds = JSONArray.parseArray(ids, long.class);
+		if(chapterService.deleteChapter(chapterIds)){
+			return ResultUtils.buildFlagAndMsgMap(true, "");
+		}else{
+			return ResultUtils.buildFlagAndMsgMap(false, "删除章节失败，请重试");
+		}
 	}
 
 }

@@ -62,7 +62,7 @@
 	  <c:forEach var="course" items="${pageInfo.list }">
 	  <div class="col-sm-6 col-md-4">
 	    <div class="thumbnail">
-	      <a href="${ctx }/course/detail"><img src="${course.cover }" alt="课程"></a>
+	      <a href="${ctx }/course/detail?id=${course.id }"><img src="${course.cover }" alt="课程"></a>
 	      <div class="caption">
 	        <h3>${course.name }</h3>
 	        <p>${course.description }</p>

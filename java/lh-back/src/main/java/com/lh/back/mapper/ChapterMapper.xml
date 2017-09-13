@@ -11,32 +11,17 @@
   <sql id="Base_Column_List" >
     id, course_id, name, url, parent_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_chapter
-    where id = #{id,jdbcType=BIGINT}
-  </select>
   
-  <select id="listBigChapter" parameterType="java.lang.Long">
+  <select id="listBigChapter" resultMap="BaseResultMap" parameterType="java.lang.Long">
   	SELECT 
   		<include refid="Base_Column_List" />
   	FROM `t_chapter`
-	WHERE
+	<where>
 		course_id = #{courseId,jdbcType=BIGINT}
-		AND parent_id !=0
+		AND parent_id = 0
+	</where>
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_chapter
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.lh.back.entity.Chapter" >
-    insert into t_chapter (id, course_id, name, 
-      url, parent_id)
-    values (#{id,jdbcType=BIGINT}, #{courseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT})
-  </insert>
   <insert id="insertSelective" parameterType="com.lh.back.entity.Chapter" >
     insert into t_chapter
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -92,26 +77,12 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lh.back.entity.Chapter" >
-    update t_chapter
-    set course_id = #{courseId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
   
   <!-- 批量删除章节 -->
   <delete id="deleteChapterByBatch" parameterType="java.util.ArrayList">
   	delete from t_chapter where id in
    	<foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
        #{item,jdbcType=BIGINT}
-   </foreach>
-   and parent_id in 
-    <foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
-        <if test="item == -1" >
-		  #{item,jdbcType=BIGINT}
-   		</if>
    </foreach>
   </delete>
   <!-- 章节列表 -->
@@ -120,25 +91,40 @@
     <include refid="Base_Column_List" />
     from t_chapter
     <where>
-    	<trim prefix=" 1 = 1 ">
-		   <if test="record.id != null" >
-	        and id = #{record.id,jdbcType=BIGINT}
-	      </if>
-	      <if test="record.courseId != null" >
-	        and course_id = #{record.courseId,jdbcType=BIGINT}
-	      </if>
-	      <if test="record.name != null" >
-	       and name = #{record.name,jdbcType=VARCHAR}
-	      </if>
-	      <if test="record.url != null" >
-	        and url = #{record.url,jdbcType=VARCHAR}
-	      </if>
-	      <if test="record.parentId != null" >
-	        and parent_id = #{record.parentId,jdbcType=BIGINT}
-	      </if>
-		</trim>
+    	<choose>
+			<when test="chapterIds != null">
+				id in (
+					SELECT id FROM t_chapter
+					WHERE parent_id in
+					<foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
+				       #{item,jdbcType=BIGINT}
+				    </foreach>
+				)
+			    OR id in
+			    <foreach collection="chapterIds" open="(" close=")" item="item" separator=",">
+			       #{item,jdbcType=BIGINT}
+			    </foreach>
+			</when>
+			<otherwise>
+				<trim prefix=" 1 = 1 ">
+				   <if test="record.id != null" >
+			        and id = #{record.id,jdbcType=BIGINT}
+			      </if>
+			      <if test="record.courseId != null" >
+			        and course_id = #{record.courseId,jdbcType=BIGINT}
+			      </if>
+			      <if test="record.name != null" >
+			       and name = #{record.name,jdbcType=VARCHAR}
+			      </if>
+			      <if test="record.url != null" >
+			        and url = #{record.url,jdbcType=VARCHAR}
+			      </if>
+			      <if test="record.parentId != null" >
+			        and parent_id = #{record.parentId,jdbcType=BIGINT}
+			      </if>
+				</trim>
+			</otherwise>
+		</choose>
     </where>
   </select>
-  
-
 </mapper>

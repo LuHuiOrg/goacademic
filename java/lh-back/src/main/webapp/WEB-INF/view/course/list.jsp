@@ -19,21 +19,21 @@
 				<th field="id" width="80" align="center" hidden="true">id</th>
 				<th field="name" width="80" align="center">课程名字</th>
 				<th field="price" width="80" align="center">课程价格</th>
-				<th data-options="field:'cover',width:80,align:'center',formatter:imgFormatter">课程封面</th>
+				<th data-options="field:'cover',width:80,align:'center',formatter:course.list.imgFormatter">课程封面</th>
 				<th field="description" width="80" align="center">课程详情</th>
-				<th field="content" width="200" align="center"   formatter="formatHref">操作</th>
+				<th field="content" width="200" align="center"   formatter="course.list.formatHref">操作</th>
             </tr>
         </thead>
     </table>
     <div id="tb">
         <div>
-            <a href="javascript:course.openDeptAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a> 
-            <a href="javascript:course.openDeptModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
-            <a href="javascript:course.deleteDept()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+            <a href="javascript:course.list.openDeptAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a> 
+            <a href="javascript:course.list.openDeptModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
+            <a href="javascript:course.list.deleteDept()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         </div>
         <div>
-            &nbsp;课程名字：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) course.searchDept()" />
-            <a href="javascript:course.searchDept()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查找</a>
+            &nbsp;课程名字：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) course.list.searchDept()" />
+            <a href="javascript:course.list.searchDept()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查找</a>
         </div>
     </div>
 
@@ -65,8 +65,8 @@
     </div>
 
     <div id="dlg-buttons">
-        <a href="javascript:course.saveDept()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-        <a href="javascript:course.closeDeptDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+        <a href="javascript:course.list.saveDept()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+        <a href="javascript:course.list.closeDeptDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
     </div>
 	<%@ include file="../common/bottom.jsp" %>
 	<script src="${ctx }/static/javascript/course.js"></script>

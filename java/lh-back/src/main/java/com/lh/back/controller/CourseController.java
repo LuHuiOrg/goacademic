@@ -71,7 +71,7 @@ public class CourseController {
 		if(courseService.deleteCourseByBatch(courseIds)){
 			return ResultUtils.buildFlagAndMsgMap(true, "");
 		}else{
-			return ResultUtils.buildFlagAndMsgMap(false, "保存数据失败");
+			return ResultUtils.buildFlagAndMsgMap(false, "删除课程失败，请重试");
 		}
 	}
 }

@@ -46,45 +46,12 @@
             <div title="课程维护" data-options="selected:true,iconCls:'icon-shujias'" style="padding: 10px; height: 10px;">
             	<a href="javascript:home.openTab('课程管理','${ctx }/course/')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;">课程管理</a>
             </div>
-            <div title="公告管理" data-options="selected:true,iconCls:'icon-wenzhang'" style="padding: 10px; height: 10px;">
-                <a href="javascript:home.openTab(' Post Info','postManage.jsp')" class="easyui-linkbutton" data-options="plain:true" style="width: 150px;"> Post Info</a>
-            </div>
             <div title="系统设置" data-options="iconCls:'icon-item'" style="padding: 10px; border: none;">
-                <a href="javascript:home.openTab(' Admin List','adminManage.jsp','icon-lxr')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">Admin List</a>
-                <a href="javascript:home.logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">Exit</a>
+                <a href="javascript:home.logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">退出系统</a>
             </div>
         </div>
     </div>
 	<%@ include file="common/bottom.jsp" %>
-	<script type="text/javascript">
-		var home = {
-			addTab:function(url, text, iconCls){
-				var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='"
-	                + url + "'></iframe>";
-		        $("#tabs").tabs("add", {
-		            title : text,
-		            iconCls : iconCls,
-		            closable : true,
-		            content : content
-		        });
-			},
-			openTab:function(text, url, iconCls){
-				if ($("#tabs").tabs("exists", text)) {
-		            $("#tabs").tabs("close", text);
-		            home.addTab(url, text, iconCls);
-		            $("#tabs").tabs("select", text);
-		        } else {
-		        	home.addTab(url, text, iconCls);
-		        }
-			},
-			logout:function(){
-				$.messager.confirm("system prompt","Do you want to exit?",function(r) {
-	               if (r) {
-	                   window.location.href = "${ctx}/admin/logout";
-	               }
-	            });
-			}
-		}
-	</script>
+	<script src="${ctx }/static/javascript/home.js"></script>
 </body>
 </html>
