@@ -63,4 +63,8 @@ public class CourseService {
 		}
 		return chapterListMap;
 	}
+	
+	public Chapter getChapterById(Long chapterId){
+		return chapterMapper.selectByPrimaryKey(chapterId);
+	}
 }

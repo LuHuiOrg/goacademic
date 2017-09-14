@@ -13,4 +13,7 @@ public class Constant {
 	
 	/** 登录跳转url */
 	public static final String REQ_URL = "reqUrl";
+	
+	/** 需要播放的章节 */
+	public static final String PLAYCHAPTER = "playChapter";
 }

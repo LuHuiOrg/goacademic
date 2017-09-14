@@ -23,6 +23,19 @@
     from t_order
     where id = #{id,jdbcType=BIGINT}
   </select>
+  
+  <select id="getOrderByParams" resultMap="BaseResultMap">
+  	SELECT 
+  		o.id, o.order_code, o.student_info_id, o.order_amount, o.paid_amount, o.paid_time, o.pay_type, 
+    	o.pay_status, o.create_time, o.remarks 
+	FROM `t_order` AS o
+	LEFT JOIN t_order_item AS oi ON o.order_code = oi.order_code
+	WHERE o.student_info_id = #{studentInfoId,jdbcType=BIGINT}
+	AND oi.course_id = #{courseId,jdbcType=BIGINT}
+	AND o.pay_status = 2
+	AND o.paid_amount != 0;
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_order
     where id = #{id,jdbcType=BIGINT}

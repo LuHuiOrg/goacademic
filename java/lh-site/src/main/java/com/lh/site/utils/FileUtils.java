@@ -9,7 +9,12 @@ import java.net.URL;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class FileUtils {
+	
+	private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
 	/**
 	 * eg FileUtils.readFileToResponse("D:/workspace/zhouyaning/WebContent/09/f1c3140516~1.flv", "f1c3140516~1", response)
@@ -37,7 +42,8 @@ public class FileUtils {
 				bos.write(buff, 0, bytesRead);
 				i++;
 			}bos.flush();
-		} catch (Exception e) {e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("process transaction error", e);
 		} finally {
 			if (bis != null) {try {bis.close();} catch (IOException e) {e.printStackTrace();}bis = null;}
 			if (bos != null) {try {bos.close();} catch (IOException e) {e.printStackTrace();}
@@ -74,7 +80,7 @@ public class FileUtils {
 				i++;
 			}bos.flush();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("process transaction error", e);
 		} finally {
 			if (br != null) {try {br.close();} catch (IOException e) {e.printStackTrace();}br = null;}
 			if (bos != null) {try {bos.close();} catch (IOException e) {e.printStackTrace();}bos = null;}

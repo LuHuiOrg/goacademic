@@ -29,7 +29,7 @@
 		    	<c:if test="${not empty chapterMap.childrenList }">
 		    		<ul class="list-group">
 				    	<c:forEach var="sonChapter" items="${chapterMap.childrenList }" varStatus="sonstatus">
-				      		<li class="list-group-item"><a href="${ctx}/course/play?courseId=${course.id}"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第${sonstatus.index + 1}节 ${sonChapter.name }</span></a></li>
+				      		<li class="list-group-item"><a href="javascript:course.playFlash(${course.id},${sonChapter.id });"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第${sonstatus.index + 1}节 ${sonChapter.name }</span></a></li>
 				      	</c:forEach>
 			      	</ul>
 		    	</c:if>
@@ -39,8 +39,12 @@
 	</div>
 	<%@ include file="../common/bottom.jsp" %>
 	<script type="text/javascript" src="${ctx }/static/plugin/flowplayer/flowplayer-3.2.11.min.js"></script>
+	<script src="${ctx }/static/js/course.js"></script>
 	<script type="text/javascript">
 		flowplayer("tl_player", "${ctx}/static/plugin/flowplayer/flowplayer-3.2.12.swf", { clip: { url: "http://127.0.0.1:8087/lh-site/course/palyFlash", autoPlay: false, autoBuffering: true} });
+		if ('${errorMsg}' != '') {
+			layer.alert('${errorMsg}', {icon: 6});
+		}
 	</script>
 </body>
 </html>

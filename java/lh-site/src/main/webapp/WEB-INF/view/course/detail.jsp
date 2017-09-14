@@ -64,7 +64,7 @@
 				    	<c:if test="${not empty chapterMap.childrenList }">
 				    		<ul class="list-group">
 						    	<c:forEach var="sonChapter" items="${chapterMap.childrenList }" varStatus="sonstatus">
-						      		<li class="list-group-item"><a href="javascript:course.playFlash(${course.id},${sonChapter.id })"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第${sonstatus.index + 1}节 ${sonChapter.name }</span></a></li>
+						      		<li class="list-group-item"><a href="javascript:course.playFlash(${course.id},${sonChapter.id });"><i class="glyphicon glyphicon-play-circle" aria-hidden="true"></i><span class="help-inline">第${sonstatus.index + 1}节 ${sonChapter.name }</span></a></li>
 						      	</c:forEach>
 					      	</ul>
 				    	</c:if>
