@@ -46,6 +46,7 @@
         <form id="fm" method="post" enctype="multipart/form-data">
             <table cellspacing="8px">
             	<input id="courseId" type="text" name="courseId" style="width: 0px; height: 0px; border: 0px; visibility: hidden;" value="${resultMap.course.id }"/>
+            	<input type="text" name="url" style="width: 0px; height: 0px; border: 0px; visibility: hidden;"/>
                 <tr>
                     <td>章节名称:</td>
                     <td><input type="text" id="name" name="name" style="width: 180px" class="easyui-validatebox" required="true" />&nbsp;<font color="red">*</font></td>
@@ -61,7 +62,7 @@
 						</select>
                     </td>
                 </tr>
-                <tr>
+                <tr style="display:none;">
                     <td>上传视频:</td>
                     <td><input type="file" class="easyui-filebox" id="chapterVideo" name="chapterVideo" style="width:260px;"></td>
                 </tr>
@@ -85,5 +86,10 @@
 
 	<%@ include file="../common/bottom.jsp" %>
 	<script src="${ctx }/static/javascript/course.js"></script>
+	<script>
+		$(function(){
+			course.chapter.init();
+		});
+	</script>
 </body>
 </html>

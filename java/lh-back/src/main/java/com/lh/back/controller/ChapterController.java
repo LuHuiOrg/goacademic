@@ -18,6 +18,7 @@ import com.lh.back.entity.Chapter;
 import com.lh.back.entity.Course;
 import com.lh.back.service.ChapterService;
 import com.lh.back.utils.ConfigUtils;
+import com.lh.back.utils.FileUtils;
 import com.lh.back.utils.ResultUtils;
 import com.lh.back.utils.SftpUtils;
 
@@ -50,10 +51,10 @@ public class ChapterController {
 		try{
 			if(chapterVideo != null && !chapterVideo.isEmpty()){
 				String fileName = SftpUtils.getNewFilename(chapterVideo.getOriginalFilename());
-				String uploadChapterVideo = ConfigUtils.getConfig("img.cover.path") + fileName;
 				String deleteFullFilename = chapter.getUrl();
 				chapter.setUrl(ConfigUtils.getConfig("img.domain").toString()+ConfigUtils.getConfig("img.cover.web.path").toString()+fileName);
-				SftpUtils.uploadSFtp(uploadChapterVideo, chapterVideo.getInputStream(), deleteFullFilename);// 上传最新图片
+				FileUtils.deleteFileFromDisk(deleteFullFilename);//删除原先的文件
+				FileUtils.saveFileToDisk(chapterVideo.getInputStream(), fileName);//上传最新的视频
 			}
 			if(!chapterService.saveAndEditCourse(chapter)){
 				return ResultUtils.buildFlagAndMsgMap(false, "保存数据失败");

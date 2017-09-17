@@ -13,8 +13,7 @@ import com.lh.back.dao.ChapterMapper;
 import com.lh.back.dao.CourseMapper;
 import com.lh.back.entity.Chapter;
 import com.lh.back.entity.Course;
-import com.lh.back.utils.ConfigUtils;
-import com.lh.back.utils.SftpUtils;
+import com.lh.back.utils.FileUtils;
 
 
 @Service
@@ -70,7 +69,7 @@ public class ChapterService {
     	for (Chapter chapter : chapterList) {
     		chapterIds.add(chapter.getId());
     		if(!StringUtils.isBlank(chapter.getUrl())){
-    			SftpUtils.delete(ConfigUtils.getConfig("img.cover.path").toString(), chapter.getUrl());
+    			FileUtils.deleteFileFromDisk(chapter.getUrl());
     		}
 		}
     	chapterMapper.deleteChapterByBatch(chapterIds);

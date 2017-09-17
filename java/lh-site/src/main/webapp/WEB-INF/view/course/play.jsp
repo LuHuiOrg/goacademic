@@ -41,7 +41,7 @@
 	<script type="text/javascript" src="${ctx }/static/plugin/flowplayer/flowplayer-3.2.11.min.js"></script>
 	<script src="${ctx }/static/js/course.js"></script>
 	<script type="text/javascript">
-		flowplayer("tl_player", "${ctx}/static/plugin/flowplayer/flowplayer-3.2.12.swf", { clip: { url: "http://127.0.0.1:8087/lh-site/course/palyFlash", autoPlay: false, autoBuffering: true} });
+		flowplayer("tl_player", "${ctx}/static/plugin/flowplayer/flowplayer-3.2.12.swf", { clip: { url: "${ctx}/course/palyFlash", autoPlay: false, autoBuffering: true} });
 		if ('${errorMsg}' != '') {
 			layer.alert('${errorMsg}', {icon: 6});
 		}

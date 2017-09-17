@@ -38,7 +38,7 @@
 		</table>
 		<div class="col-md-12 text-right">
 			总计: <span class="cost_price">￥${amount}</span><br>
-			<a class="btn btn-primary btn-large btn-submit" href="/lh-site/shop/payment">提交订单<i class="glyphicon glyphicon-chevron-right"></i></a>
+			<a class="btn btn-primary btn-large btn-submit" href="${ctx }/shop/payment">提交订单<i class="glyphicon glyphicon-chevron-right"></i></a>
 		</div>
 	</div>
 	<%@ include file="../common/bottom.jsp" %>

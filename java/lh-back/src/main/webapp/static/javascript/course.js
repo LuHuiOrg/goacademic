@@ -115,7 +115,16 @@ var course = {
 		//课程中章节模块
 		chapter:{
 			url:"",
-		    openChapterAddDialog:function() {
+		    init:function(){
+		    	$("#parentId").change(function(){
+		    		if($(this).val() != ""){
+		    			$("#chapterVideo").parents("tr").show();
+		    		}else{
+		    			$("#chapterVideo").parents("tr").hide();
+		    		}
+		    	});
+		    },
+			openChapterAddDialog:function() {
 		        $("#dlg").dialog("open").dialog("setTitle", "添加章节");
 		        course.chapter.url = common.getRootPath() + "/chapter/save";
 		    },
@@ -141,6 +150,11 @@ var course = {
 		            return;
 		        }
 		        var row = selectedRows[0];
+		        if(row.url != "" && row.url != null){
+		        	$("#chapterVideo").parents("tr").show();
+	    		}else{
+	    			$("#chapterVideo").parents("tr").hide();
+	    		}
 		        $("#dlg").dialog("open").dialog("setTitle", "修改章节");
 		        $('#fm').form('load', row);
 		        course.chapter.url = common.getRootPath() + "/chapter/save?id=" + row.id;

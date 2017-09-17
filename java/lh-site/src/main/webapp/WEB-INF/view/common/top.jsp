@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">学一手</a>
+      <img style="padding:0px;" alt="学一手logo" src="${ctx }/static/img/logo.png" class="navbar-brand">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
