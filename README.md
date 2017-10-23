@@ -1,4 +1,4 @@
-# studyOneHand
+# goacademic
 Go Academic在线教育
 http://www.goacademic.cn/
 
