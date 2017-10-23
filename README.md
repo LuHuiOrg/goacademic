@@ -1,5 +1,6 @@
 # studyOneHand
-学一手在线教育
+Go Academic在线教育
+http://www.goacademic.cn/
 
 ***
 本项目旨在打造一个学生线上学习平台
